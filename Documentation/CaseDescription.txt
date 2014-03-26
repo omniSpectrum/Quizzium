@@ -1,0 +1,18 @@
+CASE DESCRIPTION
+==============================
+
+Jukka asked for quiz platform, easy and simple, which
+would be based on jsp and servlets. It is not require to
+use Maven however in his opinion it would ease work with
+database. For questions displayed to students Jukka
+would like that they would be displayed in random order
+to prevent cheating.
+
+For testing the application Selenium should be used.
+The project should be distributed as WAR file  for 
+java 6 plus source code plus local MySql database 
+with basic set of stored procedures.
+
+=================================
+
+26.03.2014
