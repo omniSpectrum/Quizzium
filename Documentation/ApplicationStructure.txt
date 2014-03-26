@@ -19,6 +19,10 @@ also displayed quiz name, (teacher name?, course name?) and time of upcoming pla
 When quiz starts then displayed: textbox for student number, quiz name,
 list of questions in rendom order, submit button, time when quiz will be closed, (current time?).
 
+1.1.3 Finished quiz
+
+When student submit - result is displayed.
+
 2. Teacher Pages
 
 2.1 Teacher dashboard
