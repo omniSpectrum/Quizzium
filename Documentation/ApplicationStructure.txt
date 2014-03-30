@@ -16,7 +16,7 @@ Customer Feedback on pleminary sketches
 : For page 1.1.3, student should see all of the question, 
 where for each right and actual answer is shown
 
-: For th whole application instead of managing what quiz is open according to date,
+: For the whole application instead of managing what quiz is open according to date,
 instead simple switch UI element should be implemented for teacher dashboard. So
 that way only one quiz can be in position open, all others should be closed.
 
@@ -24,6 +24,15 @@ that way only one quiz can be in position open, all others should be closed.
 and the whole result history for the student, like 
 [studentNumber | quiz1 result | quiz2 result | quiz3 result | Average]
 [a1234567 | 75 | 85 | 80 | 80]
+
+--------------
+v1.2 30.03.2014
+
++ Added Grading page
++ Quized now have State instead of open/close date
++ For page 1.1.3 student now will see all the questions, plus results
+
+- Remove BaseQuiz\ImplementationQuiz Relation
 
 ==============================
 
@@ -46,7 +55,7 @@ list of questions in rendom order, submit button, time when quiz will be closed,
 
 1.1.3 Finished quiz
 
-When student submit - result is displayed.
+When student submit - result is displayed. Plus to that expected/actual answer for all questions.
 
 2. Teacher Pages
 
@@ -55,26 +64,22 @@ When student submit - result is displayed.
 Managment panel for teacher, require login, because it is real application - password encryption
 should be used. Displayed: List of Quiz Implementations
 
-2.1.1 Quiz implementation results
+2.1.1 Quiz CreateEdit
+
+Displayed: textboxes [quiz name...], question editor
+
+2.1.2 Quiz results
 
 Displayed: static table [student number, total result, link to sudent attempt record]
 
-2.1.2 Student attempt record
+2.2 Grading Table
+
+Displayed: Table [studentNumber, Quiz 1 results, Quiz 2 results, .... Quiz N results]
+
+2.2.1 Student attempt record
 
 Displayed: student number, quiz name, attempt date, static list of questions and answers,
 actual answer versus expected answer.
-
-2.1.3 Quiz implementation CreateEdit
-
-Displayed: Drop down list with base quizes, textboxes [date to Open, date to close....]
-
-2.2 Base quiz list
-
-Displayed: when created, by whom, amount of questions, quiz name, (course name?)
-
-2.2.1 Base quiz CreateEdit
-
-Displayed: textboxes [quiz name...], question editor
 
 
 ================================
