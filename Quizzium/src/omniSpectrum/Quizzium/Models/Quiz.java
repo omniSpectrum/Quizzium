@@ -3,11 +3,14 @@ package omniSpectrum.Quizzium.Models;
 public class Quiz {
 	
 	private String name;
-	private Object questions;
+	private Question[] questions;
 	
-	public Quiz (String name){
+	public Quiz (String name, Question[] questions){
 		this.name = name;
-		this.questions = null;
+		this.questions = questions;
+	}
+	public Quiz (String name){
+		this(name, null);
 	}
 	
 	public String getName() {

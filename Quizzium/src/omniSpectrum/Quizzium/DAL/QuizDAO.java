@@ -12,7 +12,6 @@ public class QuizDAO {
 		
 		//TODO Fetch Quiz with state 1 from database
 		
-		Quiz currentQuiz = new Quiz("My First Quiz");
-		return currentQuiz;
+		return new Quiz("My First Quiz");
 	}
 }
