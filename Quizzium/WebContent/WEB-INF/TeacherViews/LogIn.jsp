@@ -12,8 +12,8 @@
 <hr />
 
 <h4>Please Log in</h4>
-<form action="LogIn">
-	<input type="text" name="login"/>
+<form action="LogIn" method="POST">
+	<input type="text" name="username"/>
 	<input type="password" name="password"/>
 	
 	<input type="submit" value="Sign In" />

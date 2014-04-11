@@ -2,7 +2,7 @@ package omniSpectrum.Quizzium.Models;
 
 public class StudentAttempt {
 	
-	int studentNumber;
+	Student student;
 	Quiz quiz;
 	//TODO DATETIME FIELD
 	Object[] studentAnswers;
