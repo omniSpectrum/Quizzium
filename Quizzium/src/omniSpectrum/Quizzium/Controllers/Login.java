@@ -19,6 +19,9 @@ import omniSpectrum.Quizzium.Models.Teacher;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private final String DASHBOARD_CONTROLLER = "Dashboard";
+	private final String LOGIN_VIEW = "WEB-INF/TeacherViews/LogIn.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,19 +38,15 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 	    String loggedIn = (String) session.getAttribute("username");
 	    
-	    String viewToGo;
-	    
 	    if (loggedIn != null) {
-			// TODO redirect to Home dash
-	    	viewToGo = "_"; 
+ 
+	    	//In case if already loggedOn
+	    	response.sendRedirect(DASHBOARD_CONTROLLER); 
 		}
 	    else {
-	    	viewToGo = "WEB-INF/TeacherViews/LogIn.jsp"; 
+	    	RequestDispatcher view = request.getRequestDispatcher(LOGIN_VIEW);
+			view.forward(request, response);
 		}
-		
-		//redirect to page	
-		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
-		view.forward(request, response);
 	}
 
 	/**
@@ -55,26 +54,23 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = (String) request.getAttribute("username");
-		String pass = (String) request.getAttribute("password");
+		String username = (String) request.getParameter("username");
+		String pass = (String) request.getParameter("password");
 		
 		TeacherDAO db = new TeacherDAO();
 		Teacher test = db.teacherLoginCheck(username, pass);
 		
-		String viewToGo; 
-		
 		if (test == null) {
-			viewToGo = "WEB-INF/TeacherViews/LogIn.jsp";
+			// TODO Add message that login failed
+
+			RequestDispatcher view = request.getRequestDispatcher(LOGIN_VIEW);
+			view.forward(request, response);	
 		} 
-		else{
+		else{			
 			HttpSession session = request.getSession();
 		    session.setAttribute("username", username);
-		    viewToGo = "_"; // TODO Dash home path
-		}
-		
-		//redirect to page	
-		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
-		view.forward(request, response);		
+		    response.sendRedirect(DASHBOARD_CONTROLLER);	
+		}			
 	}
 
 }

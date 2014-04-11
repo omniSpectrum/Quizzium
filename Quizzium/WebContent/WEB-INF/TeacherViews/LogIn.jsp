@@ -12,7 +12,7 @@
 <hr />
 
 <h4>Please Log in</h4>
-<form action="LogIn" method="POST">
+<form action="Login" method="POST">
 	<input type="text" name="username"/>
 	<input type="password" name="password"/>
 	

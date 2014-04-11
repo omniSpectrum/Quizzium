@@ -4,6 +4,7 @@ public class Question {
 
 	String questionText;
 	Object[] answerOptions;
+	Object correctAnswer;
 	
 	public Question(String questionText, Object[] answerOptions) {
 		super();
