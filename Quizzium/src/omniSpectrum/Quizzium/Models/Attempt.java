@@ -1,6 +1,6 @@
 package omniSpectrum.Quizzium.Models;
 
-public class StudentAttempt {
+public class Attempt {
 	
 	Student student;
 	Quiz quiz;

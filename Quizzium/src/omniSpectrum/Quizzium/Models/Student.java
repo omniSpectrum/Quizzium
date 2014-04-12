@@ -6,10 +6,10 @@ public class Student {
 	
 	private int studentNumber;
 	
-	private ArrayList<StudentAttempt> attempts;
+	private ArrayList<Attempt> attempts;
 	
 	public Student(){
-		attempts = new ArrayList<StudentAttempt>();
+		attempts = new ArrayList<Attempt>();
 	}
 
 	public int getStudentNumber() {
@@ -20,11 +20,11 @@ public class Student {
 		this.studentNumber = studentNumber;
 	}
 
-	public ArrayList<StudentAttempt> getAttempts() {
+	public ArrayList<Attempt> getAttempts() {
 		return attempts;
 	}
 
-	public void setAttempts(ArrayList<StudentAttempt> attempts) {
+	public void setAttempts(ArrayList<Attempt> attempts) {
 		this.attempts = attempts;
 	}
 }

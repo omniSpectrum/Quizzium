@@ -12,14 +12,14 @@ public class DbEmulation {
 	private ArrayList<Teacher> teacherTable;
 	private ArrayList<Student> studentTable;
 	private ArrayList<Quiz> quizTable;
-	private ArrayList<StudentAttempt> attemptTable;
+	private ArrayList<Attempt> attemptTable;
 	
 	public DbEmulation(){
 		
 		teacherTable = new ArrayList<Teacher>();
 		studentTable = new ArrayList<Student>();
 		quizTable = new ArrayList<Quiz>();
-		attemptTable = new ArrayList<StudentAttempt>();
+		attemptTable = new ArrayList<Attempt>();
 		
 		populate();
 	}
@@ -34,6 +34,7 @@ public class DbEmulation {
 		t.setTeacherId(1);
 		t.setUsername("admin");
 		t.setPassword("admin");
+		t.setLastName("Makinen");
 		t.setQuizes(quizTable);
 		teacherTable.add(t);
 		
@@ -93,11 +94,11 @@ public class DbEmulation {
 		this.quizTable = quizTable;
 	}
 
-	public ArrayList<StudentAttempt> getAttemptTable() {
+	public ArrayList<Attempt> getAttemptTable() {
 		return attemptTable;
 	}
 
-	public void setAttemptTable(ArrayList<StudentAttempt> attemptTable) {
+	public void setAttemptTable(ArrayList<Attempt> attemptTable) {
 		this.attemptTable = attemptTable;
 	}
 }

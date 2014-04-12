@@ -18,6 +18,7 @@ import omniSpectrum.Quizzium.DAL.QuizDAO;
 public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private final String DASHBOARD_VIEW = "WEB-INF/TeacherViews/Dashboard.jsp";
 	private QuizDAO db;
        
     /**
@@ -36,10 +37,18 @@ public class Dashboard extends HttpServlet {
 		//TODO check if loggedIn
 		
 		request.setAttribute("quizList", db.getAllQuizes());	
-		String viewToGo = "WEB-INF/TeacherViews/Dashboard.jsp";
 		
 		//redirect to page	
-		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
+		RequestDispatcher view = request.getRequestDispatcher(DASHBOARD_VIEW);
 		view.forward(request, response);
+	}
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// TODO switch off all quizes first
+		// TODO switching state of selected quiz
 	}
 }
