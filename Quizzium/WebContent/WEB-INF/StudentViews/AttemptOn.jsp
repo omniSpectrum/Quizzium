@@ -52,7 +52,8 @@
 	<input type="submit" value="Submit answers" />
 	
 	</form><!--END of form.studentAttemptForm-->
-	</div>
+	</d
+	iv>
 </div>
 
 <%@ include file="../shared/footer.jsp" %>
