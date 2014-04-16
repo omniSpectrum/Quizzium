@@ -9,6 +9,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Quizzium <small>Powered By Fucking Java</small></a>
+          <a class="navbar-brand" href="/Quizzium">Quizzium <small>Powered By Fucking Java</small></a>
 </div>
 </div>
