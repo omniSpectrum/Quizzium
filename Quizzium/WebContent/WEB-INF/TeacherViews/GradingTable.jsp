@@ -11,13 +11,15 @@
 
 </head>
 <body>
-	<h1>Quizzium</h1>
-	<hr />
 	<%@ include file="../shared/teacherMenu.jsp" %>
+
 	
-	<%-- TODO get Student list from request --%>
-	
-	<table border="1">
+<div class="container">
+<div class="row">
+	<div class="col-md-12">
+	<div class="panel panel-info">
+	<div class="panel-heading">Quiz List</div>
+	<table class="table table-striped">
 		<tr>
 			<th><!-- THIS CEll initially left blank --></th>
 			<th>Quiz 1</th>
@@ -40,7 +42,11 @@
 			<td>30</td>
 		</tr>
 	</table>
-	
+	</div>
+		
 	<%@ include file="../shared/footer.jsp" %>
+	</div>
+	</div>
+</div>
 </body>
 </html>

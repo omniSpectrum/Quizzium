@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private final String LOGIN_VIEW = "WEB-INF/TeacherViews/LogIn.jsp";
+	private final String LOGIN_CONTROLLER = "Login";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,7 +40,7 @@ public class Logout extends HttpServlet {
 	    	session.removeAttribute("username");
 		}
 	    
-	    response.sendRedirect(LOGIN_VIEW);
+	    response.sendRedirect(LOGIN_CONTROLLER);
 	}
 
 }

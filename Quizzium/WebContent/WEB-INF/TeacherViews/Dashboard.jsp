@@ -12,15 +12,17 @@
 
 </head>
 <body>
-	<h1>Quizzium</h1>
-	<hr />
 	<%@ include file="../shared/teacherMenu.jsp" %>
 
 	<%  @SuppressWarnings("unchecked") // Uncheck casting suppress
 		ArrayList<Quiz> quizList = (ArrayList<Quiz>)request.getAttribute("quizList");
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
-	
-	<table border="1">
+<div class="container">
+<div class="row">
+	<div class="col-md-12">
+	<div class="panel panel-info">
+	<div class="panel-heading">Quiz List</div>
+	<table class="table table-striped">
 		<tr>
 			<th>Name</th>
 			<th>Created At</th>
@@ -40,7 +42,11 @@
 			
 		<%} //End of For loop%>
 	</table>
+	</div>
 		
 	<%@ include file="../shared/footer.jsp" %>
+	</div>
+	</div>
+</div>
 </body>
 </html>

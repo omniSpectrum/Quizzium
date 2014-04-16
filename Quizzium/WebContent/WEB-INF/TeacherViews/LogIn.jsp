@@ -6,19 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
+<link rel="stylesheet" href="/Quizzium/res/css/signin.css" />
 </head>
 <body>
-<h1>Quizzium</h1>
-<hr />
 
-<h4>Please Log in</h4>
-<form action="Login" method="POST">
-	<input type="text" name="username"/>
-	<input type="password" name="password"/>
-	
-	<input type="submit" value="Sign In" />
-</form>
+    <div class="container">
 
-<%@ include file="../shared/footer.jsp" %>
+      <form class="form-signin" role="form" action="Login" method="POST">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input name="username" type="email" class="form-control" placeholder="Username" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
 </body>
 </html>
+
