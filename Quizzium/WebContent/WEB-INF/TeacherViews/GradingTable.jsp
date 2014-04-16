@@ -13,7 +13,7 @@
 <body>
 	<h1>Quizzium</h1>
 	<hr />
-	<%@ include file="../shared/menu.jsp" %>
+	<%@ include file="../shared/teacherMenu.jsp" %>
 	
 	<%-- TODO get Student list from request --%>
 	

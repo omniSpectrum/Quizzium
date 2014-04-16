@@ -14,7 +14,7 @@
 <body>
 	<h1>Quizzium</h1>
 	<hr />
-	<%@ include file="../shared/menu.jsp" %>
+	<%@ include file="../shared/teacherMenu.jsp" %>
 
 	<%  @SuppressWarnings("unchecked") // Uncheck casting suppress
 		ArrayList<Quiz> quizList = (ArrayList<Quiz>)request.getAttribute("quizList");

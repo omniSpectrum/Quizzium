@@ -8,9 +8,11 @@
 <%@ include file="../shared/headContent.jsp" %>
 </head>
 <body>
-<h1>Quizzium</h1>
-<hr />
+<%@ include file="../shared/studentMenu.jsp" %>
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
 <%@ page import="omniSpectrum.Quizzium.Models.Quiz" %>
 <%  Quiz currentQuiz = (Quiz)request.getAttribute("currentQuiz"); %>
 
@@ -50,8 +52,11 @@
 	<input type="submit" value="Submit answers" />
 	
 	</form><!--END of form.studentAttemptForm-->
+	</div>
+</div>
 
 <%@ include file="../shared/footer.jsp" %>
+</div>
 
 </body>
 </html>

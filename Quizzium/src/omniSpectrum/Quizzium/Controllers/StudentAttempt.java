@@ -20,6 +20,9 @@ import omniSpectrum.Quizzium.Models.Quiz;
 public class StudentAttempt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private final String ATTEMPT_OFF_VIEW = "WEB-INF/StudentViews/AttemptOff.jsp";
+	private final String ATTEMPT_ON_VIEW = "WEB-INF/StudentViews/AttemptOn.jsp";
+	
 	private QuizDAO dbQuiz;
        
     /**
@@ -40,13 +43,13 @@ public class StudentAttempt extends HttpServlet {
 		String viewToGo;
 		
 		if (currentQuiz == null) {
-			viewToGo = "WEB-INF/StudentViews/AttemptOff.jsp";
+			viewToGo = ATTEMPT_OFF_VIEW;
 		}
 		else{
 			//pass quiz to view
 			request.setAttribute("currentQuiz", currentQuiz);
 			//View to go
-			viewToGo = "WEB-INF/StudentViews/AttemptOn.jsp";
+			viewToGo = ATTEMPT_ON_VIEW;
 		}
 			
 		//redirect to page	
@@ -64,7 +67,7 @@ public class StudentAttempt extends HttpServlet {
 		String viewToGo;
 		
 		if (currentQuiz == null) {
-			viewToGo = "WEB-INF/StudentViews/AttemptOff.jsp";
+			viewToGo = ATTEMPT_OFF_VIEW;
 		}
 		else{
 			

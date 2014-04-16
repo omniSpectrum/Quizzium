@@ -6,13 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
+
 </head>
 <body>
-<h1>Quizzium</h1>
-<hr />
-
-<h3>Ooops! NO Quizz is currently availible!</h3>
-
-<%@ include file="../shared/footer.jsp" %>
+<div class="container">
+	<div class="jumbotron">
+		<h1>Sorry!</h1>
+		<p class="lead">It seems that there are no quizzes available at the moment! <br> :(</p>
+	</div>
+	<%@ include file="../shared/footer.jsp" %>
+</div>
 </body>
 </html>
