@@ -12,14 +12,16 @@ public class DbEmulation {
 	private ArrayList<Teacher> teacherTable;
 	private ArrayList<Student> studentTable;
 	private ArrayList<Quiz> quizTable;
-	private ArrayList<Attempt> attemptTable;
+	private ArrayList<AnswerAlternative> answerTable;
+	private ArrayList<StudentAttempt> attemptTable;
 	
 	public DbEmulation(){
 		
 		teacherTable = new ArrayList<Teacher>();
 		studentTable = new ArrayList<Student>();
 		quizTable = new ArrayList<Quiz>();
-		attemptTable = new ArrayList<Attempt>();
+		answerTable = new ArrayList<AnswerAlternative>();
+		attemptTable = new ArrayList<StudentAttempt>();
 		
 		populate();
 	}
@@ -64,10 +66,52 @@ public class DbEmulation {
 		quizTable.add(q3);
 		
 		//Adding QUESTIONS
-		q1.getQuestions().add(new Question("What is meaning of Java?"));
-		q1.getQuestions().add(new Question("What is meaning of Eclipse?"));
-		q1.getQuestions().add(new Question("What is meaning of Android?"));
-		q2.getQuestions().add(new Question("What is meaning of Life?"));		
+		Question ques1 = new Question();
+		ques1.setQuestionId(101);
+		ques1.setQuestionText("What is meaning of Java?");
+		Question ques2 = new Question();
+		ques2.setQuestionId(102);
+		ques2.setQuestionText("What is meaning of Eclipse?");
+		Question ques3 = new Question();
+		ques3.setQuestionId(103);
+		ques3.setQuestionText("What is meaning of Android?");
+		Question ques4 = new Question();
+		ques4.setQuestionId(104);
+		ques4.setQuestionText("What is meaning of Life?");
+		
+		q1.getQuestions().add(ques1);
+		q1.getQuestions().add(ques2);
+		q1.getQuestions().add(ques3);
+		q2.getQuestions().add(ques4);
+		
+		//Adding Answer Options
+		AnswerAlternative a1 = new AnswerAlternative();
+		a1.setAlternativeId(1);
+		a1.setAnswerText("yes");
+		AnswerAlternative a2 = new AnswerAlternative();
+		a2.setAlternativeId(2);
+		a2.setAnswerText("no");
+		AnswerAlternative a3 = new AnswerAlternative();
+		a3.setAlternativeId(3);
+		a3.setAnswerText("maybe");
+		AnswerAlternative a4 = new AnswerAlternative();
+		a4.setAlternativeId(4);
+		a4.setAnswerText("possible");
+		
+		//Assigning answers to questions
+		int r = 0;
+		
+		for (Question myQ : q1.getQuestions()) {
+			
+			ArrayList<AnswerAlternative> aa = myQ.getAnswerOptions();
+			
+			aa.add(a1);
+			aa.add(a2);
+			aa.add(a3);
+			aa.add(a4);
+			
+			myQ.setCorrectAnswer(aa.get(r++));
+		}
 	}
 
 	public ArrayList<Teacher> getTeacherTable() {
@@ -94,11 +138,19 @@ public class DbEmulation {
 		this.quizTable = quizTable;
 	}
 
-	public ArrayList<Attempt> getAttemptTable() {
+	public ArrayList<AnswerAlternative> getAnswerTable() {
+		return answerTable;
+	}
+
+	public void setAnswerTable(ArrayList<AnswerAlternative> answerTable) {
+		this.answerTable = answerTable;
+	}
+
+	public ArrayList<StudentAttempt> getAttemptTable() {
 		return attemptTable;
 	}
 
-	public void setAttemptTable(ArrayList<Attempt> attemptTable) {
+	public void setAttemptTable(ArrayList<StudentAttempt> attemptTable) {
 		this.attemptTable = attemptTable;
 	}
 }

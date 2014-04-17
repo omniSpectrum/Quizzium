@@ -9,6 +9,7 @@
 
 </head>
 <body>
+<%@ include file="../shared/studentMenu.jsp"%> 
 <div class="container">
 	<div class="jumbotron">
 		<h1>Sorry!</h1>

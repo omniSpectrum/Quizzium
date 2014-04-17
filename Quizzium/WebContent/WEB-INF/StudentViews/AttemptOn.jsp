@@ -10,43 +10,39 @@
 <body>
 	<%@ include file="../shared/studentMenu.jsp"%> 
 
-
 	<%@ page import="omniSpectrum.Quizzium.Models.Quiz"%>
-	<%
-		Quiz currentQuiz = (Quiz) request.getAttribute("currentQuiz");
-	%>
+	<%@ page import="omniSpectrum.Quizzium.Models.Question"%>
+	<%@ page import="omniSpectrum.Quizzium.Models.AnswerAlternative"%>
+	
+	<% Quiz currentQuiz = (Quiz) request.getAttribute("currentQuiz"); %>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h3><%=currentQuiz.getName()%></h3>
 
 				<form name="studentAttemptForm" role="form"
-					action="studentAttempt" method="POST">
-
+					action="Attempt" method="POST">
 
 					<div class="form-group">
-						Student number <input type="text" name="studentNumber" />
+						Student number &nbsp;
+						<input type="text" name="studentNumber" 
+							data-validation="custom" 
+							data-validation-regexp="^(a[0-9]{7})$"
+							data-validation-error-msg="Student number in format a123456" />
 					</div>
-					<%
-						String[] dummyQuestionList = { "What is 1?", "What is 2",
-								"What is 3?" };
-						//TODO FOR LOOP for question in Quiz.questions
-
-						for (String question : dummyQuestionList) {
-					%>
+					<% for (Question question : currentQuiz.getQuestions()) { %>
 
 					<div class="form-group">
-						<p> <%=question%> </p>
-						<%
-							String[] dummyAnswerList = { "42", "35", "64", "12" };
-								//TODO FOR LOOP for answerAlternatives in questions.answerAlternatives
-
-								for (String answerOption : dummyAnswerList) {
-						%>
+						<p> <%=question.getQuestionText()%> </p>
+						
+						<% for (AnswerAlternative answerOption : question.getAnswerOptions()) { %>
 						<div class="radio">
-							<label> <input type="radio" name="
-							<%=question%>"
-								value=" <%=answerOption%> " /> <%=answerOption%>
+							<label> 
+								<input type="radio" 
+									name="<%=question.getQuestionId()%>"
+									value="<%=answerOption.getAlternativeId()%>" /> 
+									<%=answerOption.getAnswerText()%>
 							</label>
 						</div>
 						<%
@@ -59,13 +55,14 @@
 
 					<input type="submit" value="Submit answers" />
 
-				</form>
-				<!--END of form.studentAttemptForm-->
-			</div>
-		</div>
+				</form><!--END of form.studentAttemptForm-->
+			</div><!--END of div.col-md-12 -->
+		</div><!--END of div.row -->
 
 		<%@ include file="../shared/footer.jsp"%>
-	</div>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+		<script> $.validate(); </script>
+	</div><!--END of div.container -->
 
 </body>
 </html>
