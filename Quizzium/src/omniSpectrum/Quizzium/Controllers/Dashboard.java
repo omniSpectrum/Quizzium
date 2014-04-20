@@ -1,6 +1,7 @@
 package omniSpectrum.Quizzium.Controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import omniSpectrum.Quizzium.DAL.QuizDAO;
+import omniSpectrum.Quizzium.Models.Quiz;
+import omniSpectrum.Quizzium.utils.Helper;
 
 /**
  * Servlet implementation class Dashboard
@@ -19,6 +22,7 @@ public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private final String DASHBOARD_VIEW = "WEB-INF/TeacherViews/Dashboard.jsp";
+	private final String LOGIN_CONTROLLER = "Login";
 	private QuizDAO db;
        
     /**
@@ -34,13 +38,20 @@ public class Dashboard extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//TODO check if loggedIn
+		//check if loggedIn
+		if (!Helper.checkIfLoggedIn(request.getSession())) {
+			// if NOT loggedIn
+			response.sendRedirect(LOGIN_CONTROLLER);
+						
+		}
 		
-		request.setAttribute("quizList", db.getAllQuizes());	
-		
-		//redirect to page	
-		RequestDispatcher view = request.getRequestDispatcher(DASHBOARD_VIEW);
-		view.forward(request, response);
+		else{
+			request.setAttribute("quizList", db.getAllQuizes());	
+			
+			//redirect to page	
+			RequestDispatcher view = request.getRequestDispatcher(DASHBOARD_VIEW);
+			view.forward(request, response);
+		}
 	}
 	
 	/**
@@ -48,7 +59,12 @@ public class Dashboard extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// TODO switch off all quizes first
-		// TODO switching state of selected quiz
+		//Getting parameters
+		Integer quizId = Integer.parseInt((String)request.getParameter("quizId"));
+		Boolean targetState = 
+				Boolean.valueOf((String)request.getParameter("targetState"));   
+
+		Quiz cq = db.getQuizById(quizId);
+		db.updateQuizState(cq, targetState);			
 	}
 }

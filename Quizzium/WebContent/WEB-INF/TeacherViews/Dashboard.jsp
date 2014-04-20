@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
+<link rel="stylesheet" href="/Quizzium/res/css/bootstrap-switch.min.css" />
+
 <%@ page import="omniSpectrum.Quizzium.Models.Quiz" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -37,7 +39,11 @@
 				<td><%=df.format(q.getCreatedAt()) %></td>
 				<td><%=q.getCreatedBy().getLastName() %></td>
 				<td><%=q.getQuestions().size() %></td>
-				<td> ON / OFF <%-- TODO some switch On/off element --%></td>
+				<td> 
+					<input type="checkbox" class="stateSwitch"
+						name="<%=q.getId() %>"
+						<%= (q.isState()? "checked" : "") %> />
+				</td>
 			</tr>
 			
 		<%} //End of For loop%>
@@ -48,5 +54,10 @@
 	</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="/Quizzium/res/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript">$('.stateSwitch').bootstrapSwitch();</script>
+<script type="text/javascript" src="/Quizzium/res/js/dashboardEvent.js"></script>
+
 </body>
 </html>
