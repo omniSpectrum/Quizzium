@@ -1,43 +1,73 @@
 package omniSpectrum.Quizzium.Models;
 
-import java.util.ArrayList;
 
-public class Question {
 
-	int questionId;
-	String questionText;
-	ArrayList<AnswerAlternative> answerOptions;
-	AnswerAlternative correctAnswer;
-	
+import java.util.HashSet;
+import java.util.Set;
+
+
+public class Question implements java.io.Serializable {
+
+	private Integer questionId;
+	private Quizz quizz;
+	private String description;
+	private Set alternatives = new HashSet(0);
+	private Set alternatives_1 = new HashSet(0);
+
 	public Question() {
-		super();
-		answerOptions = new ArrayList<AnswerAlternative>();
-	}
-	
-	public int getQuestionId() {
-		return questionId;
 	}
 
-	public void setQuestionId(int questionId) {
+	public Question(Quizz quizz, String description) {
+		this.quizz = quizz;
+		this.description = description;
+	}
+
+	public Question(Quizz quizz, String description, Set alternatives,
+			Set alternatives_1) {
+		this.quizz = quizz;
+		this.description = description;
+		this.alternatives = alternatives;
+		this.alternatives_1 = alternatives_1;
+	}
+
+	public Integer getQuestionId() {
+		return this.questionId;
+	}
+
+	public void setQuestionId(Integer questionId) {
 		this.questionId = questionId;
 	}
 
-	public String getQuestionText() {
-		return questionText;
+	public Quizz getQuizz() {
+		return this.quizz;
 	}
-	public void setQuestionText(String questionText) {
-		this.questionText = questionText;
+
+	public void setQuizz(Quizz quizz) {
+		this.quizz = quizz;
 	}
-	public ArrayList<AnswerAlternative> getAnswerOptions() {
-		return answerOptions;
+
+	public String getDescription() {
+		return this.description;
 	}
-	public void setAnswerOptions(ArrayList<AnswerAlternative> answerOptions) {
-		this.answerOptions = answerOptions;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public AnswerAlternative getCorrectAnswer() {
-		return correctAnswer;
+
+	public Set getAlternatives() {
+		return this.alternatives;
 	}
-	public void setCorrectAnswer(AnswerAlternative correctAnswer) {
-		this.correctAnswer = correctAnswer;
+
+	public void setAlternatives(Set alternatives) {
+		this.alternatives = alternatives;
 	}
+
+	public Set getAlternatives_1() {
+		return this.alternatives_1;
+	}
+
+	public void setAlternatives_1(Set alternatives_1) {
+		this.alternatives_1 = alternatives_1;
+	}
+
 }

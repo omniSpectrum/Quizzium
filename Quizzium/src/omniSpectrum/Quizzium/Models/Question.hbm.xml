@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 20, 2014 9:59:44 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Question" table="Question" catalog="quizziumdb2">
+        <id name="questionId" type="java.lang.Integer">
+            <column name="questionId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="quizz" class="Quizz" fetch="select">
+            <column name="Quizz_quizzId" not-null="true" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="65535" not-null="true" />
+        </property>
+        <set name="alternatives" table="Alternative" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Question_questionId" not-null="true" />
+            </key>
+            <one-to-many class="Alternative" />
+        </set>
+        <set name="alternatives_1" table="CorrectAnswer" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Question_questionId" not-null="true" />
+            </key>
+            <many-to-many entity-name="Alternative">
+                <column name="Alternative_alternativeId" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

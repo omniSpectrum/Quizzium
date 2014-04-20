@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 20, 2014 9:59:44 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Quizz" table="Quizz" catalog="quizziumdb2">
+        <id name="quizzId" type="java.lang.Integer">
+            <column name="quizzId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="teacher" class="Teacher" fetch="select">
+            <column name="Teacher_createdBy" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="createdAt" length="0" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
+        <set name="studentAttempts" table="StudentAttempt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Quizz_quizzId" not-null="true" />
+            </key>
+            <one-to-many class="StudentAttempt" />
+        </set>
+        <set name="questions" table="Question" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Quizz_quizzId" not-null="true" />
+            </key>
+            <one-to-many class="Question" />
+        </set>
+    </class>
+</hibernate-mapping>

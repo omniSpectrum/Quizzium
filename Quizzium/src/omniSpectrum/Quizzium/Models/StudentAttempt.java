@@ -1,57 +1,56 @@
 package omniSpectrum.Quizzium.Models;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 
-public class StudentAttempt {
-	
-	Student student;
-	Quiz quiz;
-	Date attemptDate; 
-	int result; // between 0 and 100;
-	ArrayList<AnswerAlternative> studentAnswers;
-	
-	public StudentAttempt(){
-		studentAnswers = new ArrayList<AnswerAlternative>();
+public class StudentAttempt implements java.io.Serializable {
+
+	private StudentAttemptId id;
+	private Student student;
+	private Quizz quizz;
+	private Date attemptDate;
+
+	public StudentAttempt() {
+	}
+
+	public StudentAttempt(StudentAttemptId id, Student student, Quizz quizz,
+			Date attemptDate) {
+		this.id = id;
+		this.student = student;
+		this.quizz = quizz;
+		this.attemptDate = attemptDate;
+	}
+
+	public StudentAttemptId getId() {
+		return this.id;
+	}
+
+	public void setId(StudentAttemptId id) {
+		this.id = id;
 	}
 
 	public Student getStudent() {
-		return student;
+		return this.student;
 	}
 
 	public void setStudent(Student student) {
 		this.student = student;
 	}
 
-	public Quiz getQuiz() {
-		return quiz;
+	public Quizz getQuizz() {
+		return this.quizz;
 	}
 
-	public void setQuiz(Quiz quiz) {
-		this.quiz = quiz;
+	public void setQuizz(Quizz quizz) {
+		this.quizz = quizz;
 	}
 
 	public Date getAttemptDate() {
-		return attemptDate;
+		return this.attemptDate;
 	}
 
 	public void setAttemptDate(Date attemptDate) {
 		this.attemptDate = attemptDate;
 	}
 
-	public int getResult() {
-		return result;
-	}
-
-	public void setResult(int result) {
-		this.result = result;
-	}
-
-	public ArrayList<AnswerAlternative> getStudentAnswers() {
-		return studentAnswers;
-	}
-
-	public void setStudentAnswers(ArrayList<AnswerAlternative> studentAnswers) {
-		this.studentAnswers = studentAnswers;
-	}
 }

@@ -1,23 +1,39 @@
 package omniSpectrum.Quizzium.Models;
 
-import java.util.ArrayList;
 
-public class Teacher {
-	
+import java.util.HashSet;
+import java.util.Set;
+
+public class Teacher implements java.io.Serializable {
+
 	private int teacherId;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
-	
-	private ArrayList<Quiz> quizes;
-	
-	public Teacher(){
-		quizes = new ArrayList<Quiz>();
+	private Set quizzs = new HashSet(0);
+
+	public Teacher() {
+	}
+
+	public Teacher(int teacherId, String username, String password) {
+		this.teacherId = teacherId;
+		this.username = username;
+		this.password = password;
+	}
+
+	public Teacher(int teacherId, String username, String password,
+			String firstName, String lastName, Set quizzs) {
+		this.teacherId = teacherId;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.quizzs = quizzs;
 	}
 
 	public int getTeacherId() {
-		return teacherId;
+		return this.teacherId;
 	}
 
 	public void setTeacherId(int teacherId) {
@@ -25,7 +41,7 @@ public class Teacher {
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
@@ -33,7 +49,7 @@ public class Teacher {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -41,7 +57,7 @@ public class Teacher {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -49,18 +65,19 @@ public class Teacher {
 	}
 
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public ArrayList<Quiz> getQuizes() {
-		return quizes;
+	public Set getQuizzs() {
+		return this.quizzs;
 	}
 
-	public void setQuizes(ArrayList<Quiz> quizes) {
-		this.quizes = quizes;
+	public void setQuizzs(Set quizzs) {
+		this.quizzs = quizzs;
 	}
+
 }
