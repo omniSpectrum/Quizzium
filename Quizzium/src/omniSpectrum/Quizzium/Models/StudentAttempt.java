@@ -1,12 +1,13 @@
 package omniSpectrum.Quizzium.Models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StudentAttempt {
 	
 	Student student;
 	Quiz quiz;
-	//TODO DATETIME FIELD
+	Date attemptDate; 
 	int result; // between 0 and 100;
 	ArrayList<AnswerAlternative> studentAnswers;
 	
@@ -28,6 +29,14 @@ public class StudentAttempt {
 
 	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
+	}
+
+	public Date getAttemptDate() {
+		return attemptDate;
+	}
+
+	public void setAttemptDate(Date attemptDate) {
+		this.attemptDate = attemptDate;
 	}
 
 	public int getResult() {

@@ -13,9 +13,13 @@
 <div class="container">
 	<div class="jumbotron">
 		<h1>Sorry!</h1>
-		<p class="lead">It seems that there are no quizzes available at the moment! <br> :(</p>
+		<p class="lead">
+			It seems that there are no quizzes available at the moment! <br /> :( <br/>
+			<% String mess = (String)request.getAttribute("offMessage"); %>
+			<%= (mess != null ? mess : "") %>
+		</p>
 	</div>
 	<%@ include file="../shared/footer.jsp" %>
-</div>
+</div><!-- END Of div.container -->
 </body>
 </html>

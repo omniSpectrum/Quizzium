@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import omniSpectrum.Quizzium.DAL.TeacherDAO;
 import omniSpectrum.Quizzium.Models.Teacher;
+import omniSpectrum.Quizzium.utils.Helper;
 
 /**
  * Servlet implementation class Login
@@ -34,13 +35,10 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-	    String loggedIn = (String) session.getAttribute("username");
 	    
-	    if (loggedIn != null) {
+	    if (Helper.checkIfLoggedIn(request.getSession())) {
  
-	    	//In case if already loggedOn
+	    	//In case if already loggedIn
 	    	response.sendRedirect(DASHBOARD_CONTROLLER); 
 		}
 	    else {
@@ -61,8 +59,8 @@ public class Login extends HttpServlet {
 		Teacher test = db.teacherLoginCheck(username, pass);
 		
 		if (test == null) {
-			// TODO Add message that login failed
 
+			request.setAttribute("LoginMessage", "Invalid username or password");
 			RequestDispatcher view = request.getRequestDispatcher(LOGIN_VIEW);
 			view.forward(request, response);	
 		} 

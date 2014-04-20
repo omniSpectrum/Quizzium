@@ -4,11 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Quizzium</title>
+<%@ include file="../shared/headContent.jsp" %>
+
 </head>
 <body>
-<p>bla bla
-<% Integer result = (Integer) request.getAttribute("result"); %>
-<p>Your result is: <%=result %>
+<%@ include file="../shared/studentMenu.jsp"%> 
+<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt"%>
+<% StudentAttempt att = (StudentAttempt)request.getAttribute("AttemptRecord"); %>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1><%=(att.getResult() > 50)? "Congrats! =)" : "Sadly... :(" %></h1>
+		<p class="lead">
+			st.No.: a<%= att.getStudent().getStudentNumber() %>	<br/>
+			quiz: <%= att.getQuiz().getName() %> <br/>				
+		</p>
+		<h2>Result: <%= att.getResult() %> out of 100 <br/></h2>
+	</div>
+	<%@ include file="../shared/footer.jsp" %>
+</div><!-- END Of div.container -->
 </body>
 </html>
+

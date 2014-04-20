@@ -1,6 +1,7 @@
 package omniSpectrum.Quizzium.Controllers;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,6 +52,14 @@ public class Attempt extends HttpServlet {
 			viewToGo = ATTEMPT_OFF_VIEW;
 		}
 		else{
+			//Random order of questions
+			Collections.shuffle(currentQuiz.getQuestions());
+			
+			//Random order of answers within questions
+			for (Question question : currentQuiz.getQuestions()){
+				Collections.shuffle(question.getAnswerOptions());
+			}
+
 			//pass quiz to view
 			request.setAttribute("currentQuiz", currentQuiz);
 			//View to go
@@ -70,7 +79,7 @@ public class Attempt extends HttpServlet {
 		//In case student was doing quiz for 10 hours
 		Quiz currentQuiz = dbQuiz.getCurrentQuiz();
 		//In case student tries to do same Quiz again
-		int studentNumber = 
+		Integer studentNumber = 
 				Integer.parseInt(request.getParameter("studentNumber").substring(1));
 		StudentDAO dbStudent = new StudentDAO();
 		StudentAttempt myAttempt = 
@@ -78,7 +87,11 @@ public class Attempt extends HttpServlet {
 		
 		String viewToGo;
 		
-		if (currentQuiz == null /*|| myAttempt != null*/) {
+		if (currentQuiz == null || myAttempt != null) {
+			String mess = "Or student with number a" 
+						+ studentNumber.toString() 
+						+ " has already done this quiz";
+			request.setAttribute("offMessage", mess);
 			viewToGo = ATTEMPT_OFF_VIEW;
 		}
 		else{
@@ -120,7 +133,7 @@ public class Attempt extends HttpServlet {
 			dbStudent.addAttempt(myAttempt);
 			
 			// Attach an object to request
-			request.setAttribute("result", total);
+			request.setAttribute("AttemptRecord", myAttempt);
 				
 			viewToGo = ATTEMPT_RESULT_VIEW;
 		}
