@@ -23,7 +23,7 @@ import omniSpectrum.Quizzium.utils.Helper;
 public class Record extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private final String RECORD_VIEW = "WEB-INF/TeacherViews/AttemptRecord.jsp";
+	private final String RECORD_VIEW = "/WEB-INF/TeacherViews/AttemptRecord.jsp";
 	private final String LOGIN_CONTROLLER = "Login";
 	private StudentDAO db;
 	
@@ -63,4 +63,4 @@ public class Record extends HttpServlet {
 		}
 	}
 
-}
+} 	
