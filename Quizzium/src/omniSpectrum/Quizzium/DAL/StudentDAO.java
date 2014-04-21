@@ -33,6 +33,14 @@ public class StudentDAO {
 		}
 		return null;
 	}
+	public StudentAttempt getSingleAttempt(int attemptId) {
+		
+		for (StudentAttempt att : DbEmulation.getDbInstance().getAttemptTable()) {
+			if(att.getAttemptId() == attemptId)
+				return att;
+		}
+		return null;
+	}
 	
 	public Student getSingleStudent(int studentNumber)
 	{
@@ -48,6 +56,7 @@ public class StudentDAO {
 		
 		attempt.setAttemptDate(new Date());
 		attempt.getStudent().getAttempts().add(attempt);
+		DbEmulation.getDbInstance().getAttemptTable().add(attempt);
 	}
 	
 	public ArrayList<Student> getAllStudents(){

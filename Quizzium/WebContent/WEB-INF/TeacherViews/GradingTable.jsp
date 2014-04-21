@@ -11,6 +11,10 @@
 <%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
 <%@ page import="java.util.ArrayList" %>
 
+<style>
+	.blackLink{color:#2C3E50;}
+</style>
+
 </head>
 <body>
 	<%@ include file="../shared/teacherMenu.jsp" %>
@@ -54,7 +58,13 @@
 				      	 if(temp){ 
 				      		sum += att.getResult();
 				%>
-							<td><%= att.getResult() %></td>							
+							<td>
+								<% out.println("<a href=\"GradingTable/Record?a="
+									+ att.getAttemptId() + "\"" 
+									+ "class=\"blackLink\" >"
+									+ att.getResult()
+									+ "</a>"); %>
+							</td>							
 				<% 			break;
 						 }
 					  } //End of Att for

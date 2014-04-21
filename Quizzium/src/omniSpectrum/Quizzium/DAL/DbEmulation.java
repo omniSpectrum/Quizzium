@@ -127,11 +127,15 @@ public class DbEmulation {
 		
 		//Adding Attempts
 		StudentAttempt att1 = new StudentAttempt();
+		att1.setAttemptId(101);
+		att1.setStudent(s1);
 		att1.setAttemptDate(new Date());
 		att1.setQuiz(q1);
 		att1.setResult(75);
 		
 		StudentAttempt att2 = new StudentAttempt();
+		att2.setAttemptId(102);
+		att1.setStudent(s2);
 		att2.setAttemptDate(new Date());
 		att2.setQuiz(q2);
 		att2.setResult(89);
@@ -144,6 +148,9 @@ public class DbEmulation {
 		s1.getAttempts().add(att2);
 		s2.getAttempts().add(att2);
 		s3.getAttempts().add(att2);
+		//...
+		getAttemptTable().add(att1);
+		getAttemptTable().add(att2);
 	}
 
 	public ArrayList<Teacher> getTeacherTable() {

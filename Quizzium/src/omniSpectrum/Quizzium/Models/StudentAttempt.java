@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class StudentAttempt {
 	
+	int attemptId;
 	Student student;
 	Quiz quiz;
 	Date attemptDate; 
@@ -13,6 +14,14 @@ public class StudentAttempt {
 	
 	public StudentAttempt(){
 		studentAnswers = new ArrayList<AnswerAlternative>();
+	}
+
+	public int getAttemptId() {
+		return attemptId;
+	}
+
+	public void setAttemptId(int attemptId) {
+		this.attemptId = attemptId;
 	}
 
 	public Student getStudent() {
