@@ -1,7 +1,6 @@
 package omniSpectrum.Quizzium.Controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,7 +43,6 @@ public class Dashboard extends HttpServlet {
 			response.sendRedirect(LOGIN_CONTROLLER);
 						
 		}
-		
 		else{
 			request.setAttribute("quizList", db.getAllQuizes());	
 			

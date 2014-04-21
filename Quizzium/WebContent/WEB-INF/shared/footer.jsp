@@ -6,6 +6,8 @@
 <%--Footer to be the same for all the pages--%>
 
 <div class="footer">
-	<p><a href="http://alexshkunov.com" target="_blank">Alex Shkunov</a> &amp; Daniel Freitas &copy; 2014</p>
+	<p><a href="http://alexshkunov.com" target="_blank">Alex Shkunov</a> &amp; 
+	<a href="http://dantrieslinux.wordpress.com/" target="_blank">Daniel Freitas</a> 
+	&copy; 2014</p>
 </div>
 

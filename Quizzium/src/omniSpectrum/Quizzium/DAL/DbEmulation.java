@@ -112,6 +112,38 @@ public class DbEmulation {
 			
 			myQ.setCorrectAnswer(aa.get(r++));
 		}
+		
+		//Adding Students
+		Student s1 = new Student();
+		s1.setStudentNumber(1234567);
+		Student s2 = new Student();
+		s2.setStudentNumber(1234588);
+		Student s3 = new Student();
+		s3.setStudentNumber(1234599);
+		
+		getStudentTable().add(s1);
+		getStudentTable().add(s2);
+		getStudentTable().add(s3);
+		
+		//Adding Attempts
+		StudentAttempt att1 = new StudentAttempt();
+		att1.setAttemptDate(new Date());
+		att1.setQuiz(q1);
+		att1.setResult(75);
+		
+		StudentAttempt att2 = new StudentAttempt();
+		att2.setAttemptDate(new Date());
+		att2.setQuiz(q2);
+		att2.setResult(89);
+		
+		//Assigning attempts to Students
+		s1.getAttempts().add(att1);
+		s2.getAttempts().add(att1);
+		s3.getAttempts().add(att1);
+		
+		s1.getAttempts().add(att2);
+		s2.getAttempts().add(att2);
+		s3.getAttempts().add(att2);
 	}
 
 	public ArrayList<Teacher> getTeacherTable() {

@@ -1,5 +1,6 @@
 package omniSpectrum.Quizzium.DAL;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import omniSpectrum.Quizzium.Models.Student;
@@ -47,5 +48,11 @@ public class StudentDAO {
 		
 		attempt.setAttemptDate(new Date());
 		attempt.getStudent().getAttempts().add(attempt);
+	}
+	
+	public ArrayList<Student> getAllStudents(){
+		
+		// THIS METHOD SHOULD ALSO INCLUDE RELATED ATTEMPTS
+		return DbEmulation.getDbInstance().getStudentTable();
 	}
 }
