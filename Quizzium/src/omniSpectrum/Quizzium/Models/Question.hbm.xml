@@ -20,7 +20,7 @@
             </key>
             <one-to-many class="Alternative" />
         </set>
-        <set name="alternatives_1" table="CorrectAnswer" inverse="false" lazy="true" fetch="select">
+        <set name="correctAnswer" table="CorrectAnswer" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="Question_questionId" not-null="true" />
             </key>

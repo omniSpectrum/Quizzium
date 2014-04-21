@@ -12,7 +12,7 @@ public class Question implements java.io.Serializable {
 	private Quizz quizz;
 	private String description;
 	private Set alternatives = new HashSet(0);
-	private Set alternatives_1 = new HashSet(0);
+	private Set correctAnswer = new HashSet(0);
 
 	public Question() {
 	}
@@ -23,11 +23,11 @@ public class Question implements java.io.Serializable {
 	}
 
 	public Question(Quizz quizz, String description, Set alternatives,
-			Set alternatives_1) {
+			Set correctAnswer) {
 		this.quizz = quizz;
 		this.description = description;
 		this.alternatives = alternatives;
-		this.alternatives_1 = alternatives_1;
+		this.correctAnswer = correctAnswer;
 	}
 
 	public Integer getQuestionId() {
@@ -62,12 +62,12 @@ public class Question implements java.io.Serializable {
 		this.alternatives = alternatives;
 	}
 
-	public Set getAlternatives_1() {
-		return this.alternatives_1;
+	public Set getCorrectAnswer() {
+		return this.correctAnswer;
 	}
 
-	public void setAlternatives_1(Set alternatives_1) {
-		this.alternatives_1 = alternatives_1;
+	public void setCorrectAnswer(Set correctAnswer) {
+		this.correctAnswer = correctAnswer;
 	}
 
 }
