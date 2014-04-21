@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `Alternative`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Alternative` (
-  `alternativeId` int(11) NOT NULL COMMENT '	',
+  `alternativeId` int(11) NOT NULL AUTO_INCREMENT COMMENT '	',
   `description` text NOT NULL,
   `Question_questionId` int(11) NOT NULL,
   PRIMARY KEY (`alternativeId`),
@@ -162,18 +162,13 @@ DROP TABLE IF EXISTS `StudentAnswers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `StudentAnswers` (
-  `Student_studentNumber` varchar(45) NOT NULL,
   `StudentAttempt_StudentAttemptId` int(11) NOT NULL,
-  `Question_questionId` int(11) NOT NULL,
   `Alternative_alternativeId` int(11) NOT NULL,
-  PRIMARY KEY (`Student_studentNumber`,`StudentAttempt_StudentAttemptId`,`Question_questionId`,`Alternative_alternativeId`),
+  PRIMARY KEY (`StudentAttempt_StudentAttemptId`,`Alternative_alternativeId`),
   KEY `fk_StudentAnswers_StudentAttempt1_idx` (`StudentAttempt_StudentAttemptId`),
-  KEY `fk_StudentAnswers_Question1_idx` (`Question_questionId`),
   KEY `fk_StudentAnswers_Alternative1_idx` (`Alternative_alternativeId`),
-  CONSTRAINT `fk_StudentAnswers_Student1` FOREIGN KEY (`Student_studentNumber`) REFERENCES `Student` (`studentNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_StudentAnswers_StudentAttempt1` FOREIGN KEY (`StudentAttempt_StudentAttemptId`) REFERENCES `StudentAttempt` (`StudentAttemptId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_StudentAnswers_Question1` FOREIGN KEY (`Question_questionId`) REFERENCES `Question` (`questionId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_StudentAnswers_Alternative1` FOREIGN KEY (`Alternative_alternativeId`) REFERENCES `Alternative` (`alternativeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_StudentAnswers_Alternative1` FOREIGN KEY (`Alternative_alternativeId`) REFERENCES `Alternative` (`alternativeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_StudentAnswers_StudentAttempt1` FOREIGN KEY (`StudentAttempt_StudentAttemptId`) REFERENCES `StudentAttempt` (`StudentAttemptId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,12 +192,13 @@ CREATE TABLE `StudentAttempt` (
   `Student_studentNumber` varchar(45) NOT NULL,
   `attemptDate` datetime NOT NULL,
   `Quizz_quizzId` int(11) NOT NULL,
-  `StudentAttemptId` int(11) NOT NULL,
+  `StudentAttemptId` int(11) NOT NULL AUTO_INCREMENT,
+  `Result` int(11) NOT NULL,
   PRIMARY KEY (`StudentAttemptId`),
   KEY `fk_StudentAttempt_Student_idx` (`Student_studentNumber`),
   KEY `fk_StudentAttempt_Quizz1` (`Quizz_quizzId`),
-  CONSTRAINT `fk_StudentAttempt_Student` FOREIGN KEY (`Student_studentNumber`) REFERENCES `Student` (`studentNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_StudentAttempt_Quizz1` FOREIGN KEY (`Quizz_quizzId`) REFERENCES `Quizz` (`quizzId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_StudentAttempt_Quizz1` FOREIGN KEY (`Quizz_quizzId`) REFERENCES `Quizz` (`quizzId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_StudentAttempt_Student` FOREIGN KEY (`Student_studentNumber`) REFERENCES `Student` (`studentNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,7 +219,7 @@ DROP TABLE IF EXISTS `Teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Teacher` (
-  `teacherId` int(11) NOT NULL,
+  `teacherId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `firstName` varchar(45) DEFAULT NULL,
@@ -250,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-21 13:33:23
+-- Dump completed on 2014-04-21 14:47:38
