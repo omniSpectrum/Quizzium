@@ -1,12 +1,16 @@
 package omniSpectrum.Quizzium.DAL;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface GenericDao<T> {
-	T find(Integer id);
-	void save (T t);
+public interface GenericDao<T, PK extends Serializable> {
+	
+	PK save(T newInstance);
+	void update(T transientObject);
+	void saveOrUpdate(T transientObject);
+	void delete (T persistentObject);
+	T findById(PK id);
 	List<T> findAll();
-	Integer countAll();
-	void delete(T t);
+	List<T> findByProperty(String propertyName, Object value);
 
 }
