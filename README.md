@@ -3,6 +3,8 @@ Quizzium
 
 Simple and fast quiz platform
 
-#UI fixes
+#TODO
 - Sticky footer
-- Attempt Result page
+- Connect Logic and Data Access
+- Complete DB
+- Selenium tests
