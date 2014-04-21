@@ -2,31 +2,45 @@ package omniSpectrum.Quizzium.Models;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class StudentAttempt implements java.io.Serializable {
 
-	private StudentAttemptId id;
+	private Integer studentAttemptId;
 	private Student student;
 	private Quizz quizz;
 	private Date attemptDate;
+	private int result;
+	private Set alternatives = new HashSet(0);
 
 	public StudentAttempt() {
 	}
 
-	public StudentAttempt(StudentAttemptId id, Student student, Quizz quizz,
-			Date attemptDate) {
-		this.id = id;
+	public StudentAttempt(Student student, Quizz quizz, Date attemptDate,
+			int result) {
 		this.student = student;
 		this.quizz = quizz;
 		this.attemptDate = attemptDate;
+		this.result = result;
 	}
 
-	public StudentAttemptId getId() {
-		return this.id;
+	public StudentAttempt(Student student, Quizz quizz, Date attemptDate,
+			int result, Set alternatives) {
+		this.student = student;
+		this.quizz = quizz;
+		this.attemptDate = attemptDate;
+		this.result = result;
+		this.alternatives = alternatives;
 	}
 
-	public void setId(StudentAttemptId id) {
-		this.id = id;
+	public Integer getStudentAttemptId() {
+		return this.studentAttemptId;
+	}
+
+	public void setStudentAttemptId(Integer studentAttemptId) {
+		this.studentAttemptId = studentAttemptId;
 	}
 
 	public Student getStudent() {
@@ -51,6 +65,22 @@ public class StudentAttempt implements java.io.Serializable {
 
 	public void setAttemptDate(Date attemptDate) {
 		this.attemptDate = attemptDate;
+	}
+
+	public int getResult() {
+		return this.result;
+	}
+
+	public void setResult(int result) {
+		this.result = result;
+	}
+
+	public Set getAlternatives() {
+		return this.alternatives;
+	}
+
+	public void setAlternatives(Set alternatives) {
+		this.alternatives = alternatives;
 	}
 
 }

@@ -3,35 +3,35 @@ package omniSpectrum.Quizzium.Models;
 import java.util.HashSet;
 import java.util.Set;
 
- class Alternative implements java.io.Serializable {
+public class Alternative implements java.io.Serializable {
 
-	private int alternativeId;
+	private Integer alternativeId;
 	private Question question;
 	private String description;
+	private Set studentAttempts = new HashSet(0);
 	private Set questions = new HashSet(0);
 
 	public Alternative() {
 	}
 
-	public Alternative(int alternativeId, Question question, String description) {
-		this.alternativeId = alternativeId;
+	public Alternative(Question question, String description) {
 		this.question = question;
 		this.description = description;
 	}
 
-	public Alternative(int alternativeId, Question question,
-			String description, Set questions) {
-		this.alternativeId = alternativeId;
+	public Alternative(Question question, String description,
+			Set studentAttempts, Set questions) {
 		this.question = question;
 		this.description = description;
+		this.studentAttempts = studentAttempts;
 		this.questions = questions;
 	}
 
-	public int getAlternativeId() {
+	public Integer getAlternativeId() {
 		return this.alternativeId;
 	}
 
-	public void setAlternativeId(int alternativeId) {
+	public void setAlternativeId(Integer alternativeId) {
 		this.alternativeId = alternativeId;
 	}
 
@@ -49,6 +49,14 @@ import java.util.Set;
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set getStudentAttempts() {
+		return this.studentAttempts;
+	}
+
+	public void setStudentAttempts(Set studentAttempts) {
+		this.studentAttempts = studentAttempts;
 	}
 
 	public Set getQuestions() {

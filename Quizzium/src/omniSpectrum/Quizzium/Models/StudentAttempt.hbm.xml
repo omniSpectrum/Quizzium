@@ -1,25 +1,32 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 20, 2014 9:59:44 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Apr 21, 2014 2:55:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="StudentAttempt" table="StudentAttempt" catalog="quizziumdb2">
-        <composite-id name="id" class="StudentAttemptId">
-            <key-property name="quizzQuizzId" type="int">
-                <column name="Quizz_quizzId" />
-            </key-property>
-            <key-property name="studentStudentNumber" type="string">
-                <column name="Student_studentNumber" length="45" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="student" class="Student" update="false" insert="false" fetch="select">
+        <id name="studentAttemptId" type="java.lang.Integer">
+            <column name="StudentAttemptId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="student" class="Student" fetch="select">
             <column name="Student_studentNumber" length="45" not-null="true" />
         </many-to-one>
-        <many-to-one name="quizz" class="Quizz" update="false" insert="false" fetch="select">
+        <many-to-one name="quizz" class="Quizz" fetch="select">
             <column name="Quizz_quizzId" not-null="true" />
         </many-to-one>
         <property name="attemptDate" type="timestamp">
             <column name="attemptDate" length="0" not-null="true" />
         </property>
+        <property name="result" type="int">
+            <column name="Result" not-null="true" />
+        </property>
+        <set name="alternatives" table="StudentAnswers" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="StudentAttempt_StudentAttemptId" not-null="true" />
+            </key>
+            <many-to-many entity-name="Alternative">
+                <column name="Alternative_alternativeId" not-null="true" />
+            </many-to-many>
+        </set>
     </class>
 </hibernate-mapping>

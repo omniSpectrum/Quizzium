@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 20, 2014 9:59:44 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Apr 21, 2014 2:55:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="Alternative" table="Alternative" catalog="quizziumdb2">
-        <id name="alternativeId" type="int">
+        <id name="alternativeId" type="java.lang.Integer">
             <column name="alternativeId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="question" class="Question" fetch="select">
             <column name="Question_questionId" not-null="true" />
@@ -14,6 +14,14 @@
         <property name="description" type="string">
             <column name="description" length="65535" not-null="true" />
         </property>
+        <set name="studentAttempts" table="StudentAnswers" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Alternative_alternativeId" not-null="true" />
+            </key>
+            <many-to-many entity-name="StudentAttempt">
+                <column name="StudentAttempt_StudentAttemptId" not-null="true" />
+            </many-to-many>
+        </set>
         <set name="questions" table="CorrectAnswer" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="Alternative_alternativeId" not-null="true" />

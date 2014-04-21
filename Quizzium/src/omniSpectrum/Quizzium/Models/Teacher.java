@@ -1,12 +1,12 @@
 package omniSpectrum.Quizzium.Models;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class Teacher implements java.io.Serializable {
 
-	private int teacherId;
+	private Integer teacherId;
 	private String username;
 	private String password;
 	private String firstName;
@@ -16,15 +16,13 @@ public class Teacher implements java.io.Serializable {
 	public Teacher() {
 	}
 
-	public Teacher(int teacherId, String username, String password) {
-		this.teacherId = teacherId;
+	public Teacher(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
-	public Teacher(int teacherId, String username, String password,
-			String firstName, String lastName, Set quizzs) {
-		this.teacherId = teacherId;
+	public Teacher(String username, String password, String firstName,
+			String lastName, Set quizzs) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -32,11 +30,11 @@ public class Teacher implements java.io.Serializable {
 		this.quizzs = quizzs;
 	}
 
-	public int getTeacherId() {
+	public Integer getTeacherId() {
 		return this.teacherId;
 	}
 
-	public void setTeacherId(int teacherId) {
+	public void setTeacherId(Integer teacherId) {
 		this.teacherId = teacherId;
 	}
 
