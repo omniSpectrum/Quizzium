@@ -11,10 +11,6 @@
 <%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
 <%@ page import="java.util.ArrayList" %>
 
-<style>
-	.blackLink{color:#2C3E50;}
-</style>
-
 </head>
 <body>
 	<%@ include file="../shared/teacherMenu.jsp" %>

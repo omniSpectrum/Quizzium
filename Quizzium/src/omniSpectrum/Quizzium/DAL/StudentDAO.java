@@ -2,6 +2,7 @@ package omniSpectrum.Quizzium.DAL;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import omniSpectrum.Quizzium.Models.Student;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
@@ -55,6 +56,7 @@ public class StudentDAO {
 	public void addAttempt(StudentAttempt attempt) {
 		
 		attempt.setAttemptDate(new Date());
+		attempt.setAttemptId((new Random()).nextInt(1000));
 		attempt.getStudent().getAttempts().add(attempt);
 		DbEmulation.getDbInstance().getAttemptTable().add(attempt);
 	}

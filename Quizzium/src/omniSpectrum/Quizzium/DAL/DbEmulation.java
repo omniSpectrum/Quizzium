@@ -132,6 +132,8 @@ public class DbEmulation {
 		att1.setAttemptDate(new Date());
 		att1.setQuiz(q1);
 		att1.setResult(75);
+		att1.getStudentAnswers().add(a1);
+		att1.getStudentAnswers().add(a2);
 		
 		StudentAttempt att2 = new StudentAttempt();
 		att2.setAttemptId(102);

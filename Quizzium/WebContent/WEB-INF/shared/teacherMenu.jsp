@@ -9,10 +9,10 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="Dashboard">Dashboard</a></li>
-            <li><a href="GradingTable">Grading Table</a></li>
+            <li><a href="/Quizzium/Dashboard">Dashboard</a></li>
+            <li><a href="/Quizzium/GradingTable">Grading Table</a></li>
             <li><a href="/Quizzium">Check Current Quiz</a></li>
-            <li><a href="Logout">Log Out</a></li>
+            <li><a href="/Quizzium/Logout">Log Out</a></li>
             </ul>
         </div><!--/.nav-collapse -->
       </div>
