@@ -1,10 +1,8 @@
 package omniSpectrum.Quizzium.Models;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 
 public class StudentAttempt implements java.io.Serializable {
 
@@ -13,7 +11,7 @@ public class StudentAttempt implements java.io.Serializable {
 	private Quizz quizz;
 	private Date attemptDate;
 	private int result;
-	private Set alternatives = new HashSet(0);
+	private Set studentAnswerses = new HashSet(0);
 
 	public StudentAttempt() {
 	}
@@ -27,12 +25,12 @@ public class StudentAttempt implements java.io.Serializable {
 	}
 
 	public StudentAttempt(Student student, Quizz quizz, Date attemptDate,
-			int result, Set alternatives) {
+			int result, Set studentAnswerses) {
 		this.student = student;
 		this.quizz = quizz;
 		this.attemptDate = attemptDate;
 		this.result = result;
-		this.alternatives = alternatives;
+		this.studentAnswerses = studentAnswerses;
 	}
 
 	public Integer getStudentAttemptId() {
@@ -75,12 +73,12 @@ public class StudentAttempt implements java.io.Serializable {
 		this.result = result;
 	}
 
-	public Set getAlternatives() {
-		return this.alternatives;
+	public Set getStudentAnswerses() {
+		return this.studentAnswerses;
 	}
 
-	public void setAlternatives(Set alternatives) {
-		this.alternatives = alternatives;
+	public void setStudentAnswerses(Set studentAnswerses) {
+		this.studentAnswerses = studentAnswerses;
 	}
 
 }

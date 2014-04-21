@@ -1,5 +1,6 @@
 package omniSpectrum.Quizzium.Models;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,8 +9,8 @@ public class Alternative implements java.io.Serializable {
 	private Integer alternativeId;
 	private Question question;
 	private String description;
-	private Set studentAttempts = new HashSet(0);
-	private Set questions = new HashSet(0);
+	private Set studentAnswerses = new HashSet(0);
+	private Set correctAnswers = new HashSet(0);
 
 	public Alternative() {
 	}
@@ -20,11 +21,11 @@ public class Alternative implements java.io.Serializable {
 	}
 
 	public Alternative(Question question, String description,
-			Set studentAttempts, Set questions) {
+			Set studentAnswerses, Set correctAnswers) {
 		this.question = question;
 		this.description = description;
-		this.studentAttempts = studentAttempts;
-		this.questions = questions;
+		this.studentAnswerses = studentAnswerses;
+		this.correctAnswers = correctAnswers;
 	}
 
 	public Integer getAlternativeId() {
@@ -51,20 +52,20 @@ public class Alternative implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public Set getStudentAttempts() {
-		return this.studentAttempts;
+	public Set getStudentAnswerses() {
+		return this.studentAnswerses;
 	}
 
-	public void setStudentAttempts(Set studentAttempts) {
-		this.studentAttempts = studentAttempts;
+	public void setStudentAnswerses(Set studentAnswerses) {
+		this.studentAnswerses = studentAnswerses;
 	}
 
-	public Set getQuestions() {
-		return this.questions;
+	public Set getCorrectAnswers() {
+		return this.correctAnswers;
 	}
 
-	public void setQuestions(Set questions) {
-		this.questions = questions;
+	public void setCorrectAnswers(Set correctAnswers) {
+		this.correctAnswers = correctAnswers;
 	}
 
 }

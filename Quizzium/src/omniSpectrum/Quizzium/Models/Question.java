@@ -1,9 +1,7 @@
 package omniSpectrum.Quizzium.Models;
 
-
 import java.util.HashSet;
 import java.util.Set;
-
 
 public class Question implements java.io.Serializable {
 
@@ -11,7 +9,7 @@ public class Question implements java.io.Serializable {
 	private Quizz quizz;
 	private String description;
 	private Set alternatives = new HashSet(0);
-	private Set correctAnswer = new HashSet(0);
+	private Set correctAnswers = new HashSet(0);
 
 	public Question() {
 	}
@@ -22,11 +20,11 @@ public class Question implements java.io.Serializable {
 	}
 
 	public Question(Quizz quizz, String description, Set alternatives,
-			Set correctAnswer) {
+			Set correctAnswers) {
 		this.quizz = quizz;
 		this.description = description;
 		this.alternatives = alternatives;
-		this.correctAnswer = correctAnswer;
+		this.correctAnswers = correctAnswers;
 	}
 
 	public Integer getQuestionId() {
@@ -61,12 +59,12 @@ public class Question implements java.io.Serializable {
 		this.alternatives = alternatives;
 	}
 
-	public Set getCorrectAnswer() {
-		return this.correctAnswer;
+	public Set getCorrectAnswers() {
+		return this.correctAnswers;
 	}
 
-	public void setCorrectAnswer(Set correctAnswer) {
-		this.correctAnswer = correctAnswer;
+	public void setCorrectAnswers(Set correctAnswers) {
+		this.correctAnswers = correctAnswers;
 	}
 
 }

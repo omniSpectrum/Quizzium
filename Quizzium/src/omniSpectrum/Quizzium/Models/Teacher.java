@@ -3,7 +3,6 @@ package omniSpectrum.Quizzium.Models;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class Teacher implements java.io.Serializable {
 
 	private Integer teacherId;
