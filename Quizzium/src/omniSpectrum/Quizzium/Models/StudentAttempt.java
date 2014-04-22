@@ -27,7 +27,7 @@ public class StudentAttempt implements java.io.Serializable {
 	private Quizz quizz;
 	private Date attemptDate;
 	private int result;
-	private Set studentAnswerses = new HashSet(0);
+	private Set<StudentAnswers> studentAnswerses = new HashSet<StudentAnswers>(0);
 
 	public StudentAttempt() {
 	}
@@ -41,7 +41,7 @@ public class StudentAttempt implements java.io.Serializable {
 	}
 
 	public StudentAttempt(Student student, Quizz quizz, Date attemptDate,
-			int result, Set studentAnswerses) {
+			int result, Set<StudentAnswers> studentAnswerses) {
 		this.student = student;
 		this.quizz = quizz;
 		this.attemptDate = attemptDate;
@@ -100,11 +100,11 @@ public class StudentAttempt implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentAttempt")
-	public Set getStudentAnswerses() {
+	public Set<StudentAnswers> getStudentAnswerses() {
 		return this.studentAnswerses;
 	}
 
-	public void setStudentAnswerses(Set studentAnswerses) {
+	public void setStudentAnswerses(Set<StudentAnswers> studentAnswerses) {
 		this.studentAnswerses = studentAnswerses;
 	}
 

@@ -17,7 +17,7 @@ public class Student implements java.io.Serializable {
 
 	private String studentNumber;
 	private String password;
-	private Set studentAttempts = new HashSet(0);
+	private Set<StudentAttempt> studentAttempts = new HashSet<StudentAttempt>(0);
 
 	public Student() {
 	}
@@ -27,7 +27,7 @@ public class Student implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public Student(String studentNumber, String password, Set studentAttempts) {
+	public Student(String studentNumber, String password, Set<StudentAttempt> studentAttempts) {
 		this.studentNumber = studentNumber;
 		this.password = password;
 		this.studentAttempts = studentAttempts;
@@ -53,11 +53,11 @@ public class Student implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
-	public Set getStudentAttempts() {
+	public Set<StudentAttempt> getStudentAttempts() {
 		return this.studentAttempts;
 	}
 
-	public void setStudentAttempts(Set studentAttempts) {
+	public void setStudentAttempts(Set<StudentAttempt> studentAttempts) {
 		this.studentAttempts = studentAttempts;
 	}
 

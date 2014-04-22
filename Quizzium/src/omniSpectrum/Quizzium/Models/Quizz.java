@@ -4,11 +4,14 @@ package omniSpectrum.Quizzium.Models;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,8 +30,8 @@ public class Quizz implements java.io.Serializable {
 	private String name;
 	private Date createdAt;
 	private boolean state;
-	private Set studentAttempts = new HashSet(0);
-	private Set questions = new HashSet(0);
+	private Set<StudentAttempt> studentAttempts = new HashSet<StudentAttempt>(0);
+	private Set<Question> questions = new HashSet<Question>(0);
 
 	public Quizz() {
 	}
@@ -41,7 +44,7 @@ public class Quizz implements java.io.Serializable {
 	}
 
 	public Quizz(Teacher teacher, String name, Date createdAt, boolean state,
-			Set studentAttempts, Set questions) {
+			Set<StudentAttempt> studentAttempts, Set<Question> questions) {
 		this.teacher = teacher;
 		this.name = name;
 		this.createdAt = createdAt;
@@ -100,20 +103,20 @@ public class Quizz implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quizz")
-	public Set getStudentAttempts() {
+	public Set<StudentAttempt> getStudentAttempts() {
 		return this.studentAttempts;
 	}
 
-	public void setStudentAttempts(Set studentAttempts) {
+	public void setStudentAttempts(Set<StudentAttempt> studentAttempts) {
 		this.studentAttempts = studentAttempts;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quizz")
-	public Set getQuestions() {
+	public Set<Question> getQuestions() {
 		return this.questions;
 	}
 
-	public void setQuestions(Set questions) {
+	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
 

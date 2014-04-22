@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IGenericDao<T, PK extends Serializable> {
 	
-	PK save(T newInstance);
+	void save(T newInstance);
 	void update(T transientObject);
 	void saveOrUpdate(T transientObject);
 	void delete (T persistentObject);

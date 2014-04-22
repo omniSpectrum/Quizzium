@@ -3,48 +3,58 @@ package omniSpectrum.Quizzium.DAL;
 import java.io.Serializable;
 import java.util.List;
 
+import omniSpectrum.Quizzium.utils.HibernateUtil;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 
 public abstract class GenericDao<T, PK extends Serializable> implements IGenericDao<T, PK> {
 
-	private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 	
 	protected final Session getCurrentSession(){
 		return sessionFactory.getCurrentSession();
 	}
 	
 	@Override
-	public PK save(T newInstance) {
+	public void save(T newInstance) {
 		
-		return (PK) getCurrentSession().save(newInstance);
-	}
+		   Transaction trans= getCurrentSession().beginTransaction();
+		   getCurrentSession().save(newInstance);
+		   trans.commit();
+		   }
 
 	@Override
 	public void update(T transientObject) {
-		// TODO Auto-generated method stub
+		Transaction trans = getCurrentSession().beginTransaction();
 		getCurrentSession().update(transientObject);
+		trans.commit();
 		
 	}
 
 	@Override
 	public void saveOrUpdate(T transientObject) {
-		// TODO Auto-generated method stub
+		Transaction trans = getCurrentSession().beginTransaction();
 		getCurrentSession().saveOrUpdate(transientObject);
-		
+		trans.commit();
 	}
 
 	@Override
 	public void delete(T persistentObject) {
-		// TODO Auto-generated method stub
+		Transaction trans = getCurrentSession().beginTransaction();
 		getCurrentSession().delete(persistentObject);
-		
+		trans.commit();
 	}
 
 	@Override
 	public T findById(PK id) {
-		return (T) getCurrentSession().get(getEntityClass(), id);
+		Transaction tx = getCurrentSession().beginTransaction();
+		T instance = (T) getCurrentSession().get(getEntityClass(), id);
+		tx.commit();
+        return instance;
+
 	}
 
 	@Override

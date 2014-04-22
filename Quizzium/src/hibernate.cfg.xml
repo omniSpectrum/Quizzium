@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory name="myFactory">
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">javasucks</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/quizziumdb2</property>
         <property name="hibernate.connection.username">quizzium</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <mapping class="omniSpectrum.Quizzium.Models.Student" />
+        <mapping class="omniSpectrum.Quizzium.Models.Teacher" />
+        <mapping class="omniSpectrum.Quizzium.Models.StudentAttempt" />
+        <mapping class="omniSpectrum.Quizzium.Models.CorrectAnswer" />
+        <mapping class="omniSpectrum.Quizzium.Models.Question" />
+        <mapping class="omniSpectrum.Quizzium.Models.Quizz" />
+        <mapping class="omniSpectrum.Quizzium.Models.Alternative" />
+        <mapping class="omniSpectrum.Quizzium.Models.StudentAnswers" />
     </session-factory>
 </hibernate-configuration>

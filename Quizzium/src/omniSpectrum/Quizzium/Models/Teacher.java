@@ -23,7 +23,7 @@ public class Teacher implements java.io.Serializable {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private Set quizzs = new HashSet(0);
+	private Set<Quizz> quizzs = new HashSet<Quizz>(0);
 
 	public Teacher() {
 	}
@@ -34,7 +34,7 @@ public class Teacher implements java.io.Serializable {
 	}
 
 	public Teacher(String username, String password, String firstName,
-			String lastName, Set quizzs) {
+			String lastName, Set<Quizz> quizzs) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -90,11 +90,11 @@ public class Teacher implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
-	public Set getQuizzs() {
+	public Set<Quizz> getQuizzs() {
 		return this.quizzs;
 	}
 
-	public void setQuizzs(Set quizzs) {
+	public void setQuizzs(Set<Quizz> quizzs) {
 		this.quizzs = quizzs;
 	}
 
