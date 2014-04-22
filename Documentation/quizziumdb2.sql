@@ -62,8 +62,8 @@ CREATE TABLE `CorrectAnswer` (
   PRIMARY KEY (`Question_questionId`,`Alternative_alternativeId`),
   KEY `fk_CorrectAnswer_Question1_idx` (`Question_questionId`),
   KEY `fk_CorrectAnswer_Alternative1_idx` (`Alternative_alternativeId`),
-  CONSTRAINT `fk_CorrectAnswer_Question1` FOREIGN KEY (`Question_questionId`) REFERENCES `Question` (`questionId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CorrectAnswer_Alternative1` FOREIGN KEY (`Alternative_alternativeId`) REFERENCES `Alternative` (`alternativeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_CorrectAnswer_Alternative1` FOREIGN KEY (`Alternative_alternativeId`) REFERENCES `Alternative` (`alternativeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_CorrectAnswer_Question1` FOREIGN KEY (`Question_questionId`) REFERENCES `Question` (`questionId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,10 +113,13 @@ CREATE TABLE `Quizz` (
   `quizzId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `state` bit(1) NOT NULL,
   `Teacher_createdBy` int(11) NOT NULL,
+  `QuizzStarted` datetime NOT NULL,
+  `QuizzEnded` datetime NOT NULL,
   PRIMARY KEY (`quizzId`),
   UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `QuizzStarted_UNIQUE` (`QuizzStarted`),
+  UNIQUE KEY `QuizzEnded_UNIQUE` (`QuizzEnded`),
   KEY `fk_Quizz_Teacher1_idx` (`Teacher_createdBy`),
   CONSTRAINT `fk_Quizz_Teacher1` FOREIGN KEY (`Teacher_createdBy`) REFERENCES `Teacher` (`teacherId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -140,7 +143,6 @@ DROP TABLE IF EXISTS `Student`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Student` (
   `studentNumber` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`studentNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -246,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-21 14:47:38
+-- Dump completed on 2014-04-22 20:06:48
