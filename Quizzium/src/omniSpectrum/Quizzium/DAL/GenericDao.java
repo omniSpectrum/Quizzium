@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 
 public abstract class GenericDao<T, PK extends Serializable> implements IGenericDao<T, PK> {
 
@@ -43,8 +44,7 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 
 	@Override
 	public T findById(PK id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (T) getCurrentSession().get(getEntityClass(), id);
 	}
 
 	@Override
@@ -58,5 +58,10 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+    protected abstract Class<T> getEntityClass();
+    protected DetachedCriteria createDetachedCriteria() {
+          return DetachedCriteria.forClass(getEntityClass());
+    };
 
 }
