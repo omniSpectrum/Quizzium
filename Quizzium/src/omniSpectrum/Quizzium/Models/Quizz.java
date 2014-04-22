@@ -4,7 +4,22 @@ package omniSpectrum.Quizzium.Models;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
+@Entity
+@Table(name = "Quizz", catalog = "quizziumdb2", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Quizz implements java.io.Serializable {
 
 	private Integer quizzId;
@@ -35,6 +50,9 @@ public class Quizz implements java.io.Serializable {
 		this.questions = questions;
 	}
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "quizzId", unique = true, nullable = false)
 	public Integer getQuizzId() {
 		return this.quizzId;
 	}
@@ -43,6 +61,8 @@ public class Quizz implements java.io.Serializable {
 		this.quizzId = quizzId;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Teacher_createdBy", nullable = false)
 	public Teacher getTeacher() {
 		return this.teacher;
 	}
@@ -51,6 +71,7 @@ public class Quizz implements java.io.Serializable {
 		this.teacher = teacher;
 	}
 
+	@Column(name = "name", unique = true, nullable = false, length = 45)
 	public String getName() {
 		return this.name;
 	}
@@ -59,6 +80,8 @@ public class Quizz implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createdAt", nullable = false, length = 0)
 	public Date getCreatedAt() {
 		return this.createdAt;
 	}
@@ -67,6 +90,7 @@ public class Quizz implements java.io.Serializable {
 		this.createdAt = createdAt;
 	}
 
+	@Column(name = "state", nullable = false)
 	public boolean isState() {
 		return this.state;
 	}
@@ -75,6 +99,7 @@ public class Quizz implements java.io.Serializable {
 		this.state = state;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quizz")
 	public Set getStudentAttempts() {
 		return this.studentAttempts;
 	}
@@ -83,6 +108,7 @@ public class Quizz implements java.io.Serializable {
 		this.studentAttempts = studentAttempts;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quizz")
 	public Set getQuestions() {
 		return this.questions;
 	}

@@ -3,7 +3,19 @@ package omniSpectrum.Quizzium.Models;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Alternative", catalog = "quizziumdb2")
 public class Alternative implements java.io.Serializable {
 
 	private Integer alternativeId;
@@ -28,6 +40,9 @@ public class Alternative implements java.io.Serializable {
 		this.correctAnswers = correctAnswers;
 	}
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "alternativeId", unique = true, nullable = false)
 	public Integer getAlternativeId() {
 		return this.alternativeId;
 	}
@@ -36,6 +51,8 @@ public class Alternative implements java.io.Serializable {
 		this.alternativeId = alternativeId;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Question_questionId", nullable = false)
 	public Question getQuestion() {
 		return this.question;
 	}
@@ -44,6 +61,7 @@ public class Alternative implements java.io.Serializable {
 		this.question = question;
 	}
 
+	@Column(name = "description", nullable = false, length = 65535)
 	public String getDescription() {
 		return this.description;
 	}
@@ -52,6 +70,7 @@ public class Alternative implements java.io.Serializable {
 		this.description = description;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "alternative")
 	public Set getStudentAnswerses() {
 		return this.studentAnswerses;
 	}
@@ -60,6 +79,7 @@ public class Alternative implements java.io.Serializable {
 		this.studentAnswerses = studentAnswerses;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "alternative")
 	public Set getCorrectAnswers() {
 		return this.correctAnswers;
 	}

@@ -1,9 +1,25 @@
 package omniSpectrum.Quizzium.Models;
 
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+
+@Entity
+@Table(name = "StudentAttempt", catalog = "quizziumdb2")
 public class StudentAttempt implements java.io.Serializable {
 
 	private Integer studentAttemptId;
@@ -33,6 +49,9 @@ public class StudentAttempt implements java.io.Serializable {
 		this.studentAnswerses = studentAnswerses;
 	}
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "StudentAttemptId", unique = true, nullable = false)
 	public Integer getStudentAttemptId() {
 		return this.studentAttemptId;
 	}
@@ -41,6 +60,8 @@ public class StudentAttempt implements java.io.Serializable {
 		this.studentAttemptId = studentAttemptId;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Student_studentNumber", nullable = false)
 	public Student getStudent() {
 		return this.student;
 	}
@@ -49,6 +70,8 @@ public class StudentAttempt implements java.io.Serializable {
 		this.student = student;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Quizz_quizzId", nullable = false)
 	public Quizz getQuizz() {
 		return this.quizz;
 	}
@@ -57,6 +80,8 @@ public class StudentAttempt implements java.io.Serializable {
 		this.quizz = quizz;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "attemptDate", nullable = false, length = 0)
 	public Date getAttemptDate() {
 		return this.attemptDate;
 	}
@@ -65,6 +90,7 @@ public class StudentAttempt implements java.io.Serializable {
 		this.attemptDate = attemptDate;
 	}
 
+	@Column(name = "Result", nullable = false)
 	public int getResult() {
 		return this.result;
 	}
@@ -73,6 +99,7 @@ public class StudentAttempt implements java.io.Serializable {
 		this.result = result;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentAttempt")
 	public Set getStudentAnswerses() {
 		return this.studentAnswerses;
 	}

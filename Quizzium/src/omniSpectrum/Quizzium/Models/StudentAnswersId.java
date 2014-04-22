@@ -1,5 +1,10 @@
 package omniSpectrum.Quizzium.Models;
 
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class StudentAnswersId implements java.io.Serializable {
 
 	private int studentAttemptStudentAttemptId;
@@ -14,6 +19,7 @@ public class StudentAnswersId implements java.io.Serializable {
 		this.alternativeAlternativeId = alternativeAlternativeId;
 	}
 
+	@Column(name = "StudentAttempt_StudentAttemptId", nullable = false)
 	public int getStudentAttemptStudentAttemptId() {
 		return this.studentAttemptStudentAttemptId;
 	}
@@ -23,6 +29,7 @@ public class StudentAnswersId implements java.io.Serializable {
 		this.studentAttemptStudentAttemptId = studentAttemptStudentAttemptId;
 	}
 
+	@Column(name = "Alternative_alternativeId", nullable = false)
 	public int getAlternativeAlternativeId() {
 		return this.alternativeAlternativeId;
 	}

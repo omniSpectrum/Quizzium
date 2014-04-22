@@ -1,8 +1,21 @@
 package omniSpectrum.Quizzium.Models;
 
+// default package
+// Generated Apr 22, 2014 5:03:12 PM by Hibernate Tools 3.4.0.CR1
+
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Teacher", catalog = "quizziumdb2")
 public class Teacher implements java.io.Serializable {
 
 	private Integer teacherId;
@@ -29,6 +42,9 @@ public class Teacher implements java.io.Serializable {
 		this.quizzs = quizzs;
 	}
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "teacherId", unique = true, nullable = false)
 	public Integer getTeacherId() {
 		return this.teacherId;
 	}
@@ -37,6 +53,7 @@ public class Teacher implements java.io.Serializable {
 		this.teacherId = teacherId;
 	}
 
+	@Column(name = "username", nullable = false, length = 45)
 	public String getUsername() {
 		return this.username;
 	}
@@ -45,6 +62,7 @@ public class Teacher implements java.io.Serializable {
 		this.username = username;
 	}
 
+	@Column(name = "password", nullable = false, length = 45)
 	public String getPassword() {
 		return this.password;
 	}
@@ -53,6 +71,7 @@ public class Teacher implements java.io.Serializable {
 		this.password = password;
 	}
 
+	@Column(name = "firstName", length = 45)
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -61,6 +80,7 @@ public class Teacher implements java.io.Serializable {
 		this.firstName = firstName;
 	}
 
+	@Column(name = "lastName", length = 45)
 	public String getLastName() {
 		return this.lastName;
 	}
@@ -69,6 +89,7 @@ public class Teacher implements java.io.Serializable {
 		this.lastName = lastName;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
 	public Set getQuizzs() {
 		return this.quizzs;
 	}

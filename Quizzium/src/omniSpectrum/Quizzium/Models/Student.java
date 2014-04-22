@@ -3,7 +3,16 @@ package omniSpectrum.Quizzium.Models;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "Student", catalog = "quizziumdb2")
 public class Student implements java.io.Serializable {
 
 	private String studentNumber;
@@ -24,6 +33,8 @@ public class Student implements java.io.Serializable {
 		this.studentAttempts = studentAttempts;
 	}
 
+	@Id
+	@Column(name = "studentNumber", unique = true, nullable = false, length = 45)
 	public String getStudentNumber() {
 		return this.studentNumber;
 	}
@@ -32,6 +43,7 @@ public class Student implements java.io.Serializable {
 		this.studentNumber = studentNumber;
 	}
 
+	@Column(name = "password", nullable = false, length = 45)
 	public String getPassword() {
 		return this.password;
 	}
@@ -40,6 +52,7 @@ public class Student implements java.io.Serializable {
 		this.password = password;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
 	public Set getStudentAttempts() {
 		return this.studentAttempts;
 	}
