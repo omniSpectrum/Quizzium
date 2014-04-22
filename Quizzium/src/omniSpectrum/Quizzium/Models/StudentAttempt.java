@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 @Table(name = "StudentAttempt", catalog = "quizziumdb2")
 public class StudentAttempt implements java.io.Serializable {

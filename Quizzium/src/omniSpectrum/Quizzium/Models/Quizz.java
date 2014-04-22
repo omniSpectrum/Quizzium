@@ -1,17 +1,13 @@
 package omniSpectrum.Quizzium.Models;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-
 import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,33 +18,41 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Quizz", catalog = "quizziumdb2", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "Quizz", catalog = "quizziumdb2", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "name"),
+		@UniqueConstraint(columnNames = "QuizzStarted"),
+		@UniqueConstraint(columnNames = "QuizzEnded") })
 public class Quizz implements java.io.Serializable {
 
 	private Integer quizzId;
 	private Teacher teacher;
 	private String name;
 	private Date createdAt;
-	private boolean state;
+	private Date quizzStarted;
+	private Date quizzEnded;
 	private Set<StudentAttempt> studentAttempts = new HashSet<StudentAttempt>(0);
 	private Set<Question> questions = new HashSet<Question>(0);
 
 	public Quizz() {
 	}
 
-	public Quizz(Teacher teacher, String name, Date createdAt, boolean state) {
+	public Quizz(Teacher teacher, String name, Date createdAt,
+			Date quizzStarted, Date quizzEnded) {
 		this.teacher = teacher;
 		this.name = name;
 		this.createdAt = createdAt;
-		this.state = state;
+		this.quizzStarted = quizzStarted;
+		this.quizzEnded = quizzEnded;
 	}
 
-	public Quizz(Teacher teacher, String name, Date createdAt, boolean state,
-			Set<StudentAttempt> studentAttempts, Set<Question> questions) {
+	public Quizz(Teacher teacher, String name, Date createdAt,
+			Date quizzStarted, Date quizzEnded, Set<StudentAttempt> studentAttempts,
+			Set<Question> questions) {
 		this.teacher = teacher;
 		this.name = name;
 		this.createdAt = createdAt;
-		this.state = state;
+		this.quizzStarted = quizzStarted;
+		this.quizzEnded = quizzEnded;
 		this.studentAttempts = studentAttempts;
 		this.questions = questions;
 	}
@@ -93,13 +97,24 @@ public class Quizz implements java.io.Serializable {
 		this.createdAt = createdAt;
 	}
 
-	@Column(name = "state", nullable = false)
-	public boolean isState() {
-		return this.state;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "QuizzStarted", unique = true, nullable = false, length = 0)
+	public Date getQuizzStarted() {
+		return this.quizzStarted;
 	}
 
-	public void setState(boolean state) {
-		this.state = state;
+	public void setQuizzStarted(Date quizzStarted) {
+		this.quizzStarted = quizzStarted;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "QuizzEnded", unique = true, nullable = false, length = 0)
+	public Date getQuizzEnded() {
+		return this.quizzEnded;
+	}
+
+	public void setQuizzEnded(Date quizzEnded) {
+		this.quizzEnded = quizzEnded;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quizz")

@@ -1,7 +1,5 @@
 package omniSpectrum.Quizzium.Models;
 
-// default package
-// Generated Apr 22, 2014 5:03:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;

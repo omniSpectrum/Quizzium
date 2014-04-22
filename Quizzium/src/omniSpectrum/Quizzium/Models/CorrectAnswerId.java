@@ -4,7 +4,6 @@ package omniSpectrum.Quizzium.Models;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-
 @Embeddable
 public class CorrectAnswerId implements java.io.Serializable {
 

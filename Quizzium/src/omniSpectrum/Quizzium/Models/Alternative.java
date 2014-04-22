@@ -21,7 +21,7 @@ public class Alternative implements java.io.Serializable {
 	private Integer alternativeId;
 	private Question question;
 	private String description;
-	private Set<StudentAnswers> studentAnswerses = new HashSet<StudentAnswers>(0);
+	private Set<StudentAnswers> studentAnswerses = new HashSet<StudentAnswers> (0);
 	private Set<CorrectAnswer> correctAnswers = new HashSet<CorrectAnswer>(0);
 
 	public Alternative() {
@@ -33,7 +33,7 @@ public class Alternative implements java.io.Serializable {
 	}
 
 	public Alternative(Question question, String description,
-			Set<StudentAnswers> studentAnswerses, Set<CorrectAnswer> correctAnswers) {
+			Set<StudentAnswers>  studentAnswerses, Set<CorrectAnswer> correctAnswers) {
 		this.question = question;
 		this.description = description;
 		this.studentAnswerses = studentAnswerses;
@@ -71,11 +71,11 @@ public class Alternative implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "alternative")
-	public Set<StudentAnswers> getStudentAnswerses() {
+	public Set<StudentAnswers>  getStudentAnswerses() {
 		return this.studentAnswerses;
 	}
 
-	public void setStudentAnswerses(Set<StudentAnswers> studentAnswerses) {
+	public void setStudentAnswerses(Set<StudentAnswers>  studentAnswerses) {
 		this.studentAnswerses = studentAnswerses;
 	}
 
