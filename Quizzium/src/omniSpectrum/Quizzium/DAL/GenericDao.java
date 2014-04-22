@@ -48,11 +48,11 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 		trans.commit();
 	}
 
+	//TODO: Fix the bug here!!!!
 	@Override
 	public T findById(PK id) {
 		Transaction tx = getCurrentSession().beginTransaction();
 		T instance = (T) getCurrentSession().get(getEntityClass(), id);
-		tx.commit();
         return instance;
 
 	}

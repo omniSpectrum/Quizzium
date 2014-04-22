@@ -2,10 +2,12 @@ package omniSpectrum.Quizzium.DAL;
 
 import omniSpectrum.Quizzium.Models.Teacher;
 
-public class TeacherDAO {
+public class TeacherDAO extends GenericDao<Teacher, Integer> {
 	
-	public TeacherDAO() {
-
+	
+	@Override
+	protected Class<Teacher> getEntityClass() {
+		return Teacher.class;
 	}
 	
 	public Teacher teacherLoginCheck(String username, String password){
@@ -17,5 +19,7 @@ public class TeacherDAO {
 		}
 		return null;
 	}
+
+
 	
 }
