@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
 @Table(name = "StudentAttempt", catalog = "quizziumdb2")
 public class StudentAttempt implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer studentAttemptId;
 	private Student student;
 	private Quizz quizz;

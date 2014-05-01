@@ -5,6 +5,7 @@ import java.util.List;
 
 import omniSpectrum.Quizzium.utils.HibernateUtil;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -52,15 +53,19 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 	@Override
 	public T findById(PK id) {
 		Transaction tx = getCurrentSession().beginTransaction();
+		@SuppressWarnings("unchecked")
 		T instance = (T) getCurrentSession().get(getEntityClass(), id);
         return instance;
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		final Session session = sessionFactory.getCurrentSession();
+		final Criteria crit = session.createCriteria(getEntityClass());
+
+		return crit.list();
 	}
 
 	@Override
@@ -73,5 +78,4 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
     protected DetachedCriteria createDetachedCriteria() {
           return DetachedCriteria.forClass(getEntityClass());
     };
-
 }

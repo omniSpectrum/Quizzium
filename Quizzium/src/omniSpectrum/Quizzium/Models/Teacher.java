@@ -16,6 +16,8 @@ import javax.persistence.Table;
 @Table(name = "Teacher", catalog = "quizziumdb2")
 public class Teacher implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer teacherId;
 	private String username;
 	private String password;

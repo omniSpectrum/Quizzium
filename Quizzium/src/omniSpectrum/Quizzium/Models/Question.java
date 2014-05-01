@@ -17,7 +17,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Question", catalog = "quizziumdb2")
 public class Question implements java.io.Serializable {
-
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Integer questionId;
 	private Quizz quizz;
 	private String description;

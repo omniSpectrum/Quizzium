@@ -18,6 +18,8 @@ import javax.persistence.Table;
 @Table(name = "Alternative", catalog = "quizziumdb2")
 public class Alternative implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer alternativeId;
 	private Question question;
 	private String description;

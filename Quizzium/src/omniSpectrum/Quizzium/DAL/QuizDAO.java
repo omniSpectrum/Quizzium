@@ -1,7 +1,5 @@
 package omniSpectrum.Quizzium.DAL;
 
-import java.util.ArrayList;
-
 import omniSpectrum.Quizzium.Models.Quizz;
 
 public class QuizDAO extends GenericDao<Quizz, Integer> {
@@ -14,23 +12,17 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 	protected Class<Quizz> getEntityClass() {
 		return Quizz.class;
 	}
-//
+
 //	public ArrayList<Quiz> getAllQuizes(){
 //		return DbEmulation.getDbInstance().getQuizTable();
 //	}
-//	
-//	public Quiz getCurrentQuiz(){
-//		
-//		//TODO Fetch Quiz with state 1 from database
-//		
-//		for (Quiz quiz : DbEmulation.getDbInstance().getQuizTable()) {
-//			
-//			if (quiz.isState())
-//				return quiz;
-//		}
-//		return null;
-//	}
-//
+	
+	public Quizz getCurrentQuiz(){
+		
+		//TODO Fetch from DB quiz that has timeframe 'now'
+		return null;
+	}
+
 //	public void updateQuizState(Quiz cq, Boolean targetState) {
 //		
 //		// TODO real DB interaction UPDATE
@@ -50,6 +42,5 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 //		}
 //		return null;
 //	}
-
 
 }

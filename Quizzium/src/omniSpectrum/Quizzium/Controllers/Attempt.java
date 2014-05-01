@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import omniSpectrum.Quizzium.DAL.QuizDAO;
 import omniSpectrum.Quizzium.DAL.StudentDAO;
-import omniSpectrum.Quizzium.Models.AnswerAlternative;
+import omniSpectrum.Quizzium.Models.Alternative;
 import omniSpectrum.Quizzium.Models.Question;
-import omniSpectrum.Quizzium.Models.Quiz;
+import omniSpectrum.Quizzium.Models.Quizz;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 
 /**
@@ -45,7 +45,7 @@ public class Attempt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Get Quiz
-		Quiz currentQuiz = dbQuiz.getCurrentQuiz();
+		Quizz currentQuiz = dbQuiz.getCurrentQuiz();
 		String viewToGo;
 		
 		if (currentQuiz == null) {
@@ -77,13 +77,12 @@ public class Attempt extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//In case student was doing quiz for 10 hours
-		Quiz currentQuiz = dbQuiz.getCurrentQuiz();
+		Quizz currentQuiz = dbQuiz.getCurrentQuiz();
 		//In case student tries to do same Quiz again
-		Integer studentNumber = 
-				Integer.parseInt(request.getParameter("studentNumber").substring(1));
+		String studentNumber = request.getParameter("studentNumber");
 		StudentDAO dbStudent = new StudentDAO();
 		StudentAttempt myAttempt = 
-				dbStudent.getSingleAttempt(studentNumber, currentQuiz.getId());
+				dbStudent.getSingleAttempt(studentNumber, currentQuiz.getQuizzId());
 		
 		String viewToGo;
 		
@@ -98,8 +97,8 @@ public class Attempt extends HttpServlet {
 			
 			//Connect objects
 			myAttempt = new StudentAttempt();
-			myAttempt.setQuiz(currentQuiz);
-			myAttempt.setStudent(dbStudent.getSingleStudent(studentNumber));
+			myAttempt.setQuizz(currentQuiz);
+			myAttempt.setStudent(dbStudent.findById(studentNumber));
 			
 			//Collect Values, Collect points "n out of m"
 			int amountRight = 0;
@@ -112,10 +111,10 @@ public class Attempt extends HttpServlet {
 				int studentAnswer = 
 						Integer.parseInt(answerChoosen != null ? answerChoosen : "0");
 				
-				for (AnswerAlternative answerAlternative : question.getAnswerOptions()) {
+				for (Alternative answerAlternative : question.getAlternatives()) {
 					
 					if(answerAlternative.getAlternativeId() == studentAnswer){
-						myAttempt.getStudentAnswers().add(answerAlternative);
+						myAttempt.getStudentAnswerses().add(answerAlternative);
 						
 						// Cross-check actual answer against expected (correct) answer
 						if (answerAlternative == question.getCorrectAnswer()) {
@@ -142,5 +141,4 @@ public class Attempt extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
 		view.forward(request, response);
 	}
-
 }

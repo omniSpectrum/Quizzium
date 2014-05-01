@@ -24,6 +24,8 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "QuizzEnded") })
 public class Quizz implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer quizzId;
 	private Teacher teacher;
 	private String name;
