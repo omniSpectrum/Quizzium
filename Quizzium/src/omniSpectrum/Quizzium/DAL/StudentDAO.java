@@ -6,13 +6,12 @@ import java.util.Random;
 
 import omniSpectrum.Quizzium.Models.Student;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
+import omniSpectrum.Quizzium.DAL.*;
+public class StudentDAO extends GenericDao <Student, String> {
 
-public class StudentDAO {
-
-	DbEmulation db;
-	
-	public StudentDAO(){
-		db = DbEmulation.getDbInstance();
+	@Override
+	protected Class<Student> getEntityClass() {
+		return Student.class;
 	}
 
 	public StudentAttempt getSingleAttempt(int studentNumber, int quizId) {
