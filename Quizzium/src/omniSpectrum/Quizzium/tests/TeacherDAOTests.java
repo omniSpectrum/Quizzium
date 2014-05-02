@@ -15,7 +15,7 @@ public class TeacherDAOTests {
 		Teacher teacher = new Teacher("jukka", "jusju");
 		teacherDao.save(teacher);
 		
-		assertNotNull(teacherDao.findById(1));
+		assertNotNull(teacherDao.findById(6));
 	}
 
 }
