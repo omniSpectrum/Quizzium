@@ -15,7 +15,7 @@ public class StudentDAO {
 		db = DbEmulation.getDbInstance();
 	}
 
-	public StudentAttempt getSingleAttempt(int studentNumber, int quizId) {
+	public StudentAttempt getSingleAttempt(String studentNumber, int quizId) {
 		
 		//IF student exists --> check if contains Quiz with QuizId		
 		Student s = getSingleStudent(studentNumber);
@@ -29,7 +29,7 @@ public class StudentDAO {
 		//ELSE student DOESNT exist --> create, add to DB, return NULL
 		else{
 			s = new Student();
-			s.setStudentNumber(studentNumber);
+			s.setStudentNumber(Integer.parseInt(studentNumber));
 			db.getStudentTable().add(s);
 		}
 		return null;
@@ -43,10 +43,10 @@ public class StudentDAO {
 		return null;
 	}
 	
-	public Student getSingleStudent(int studentNumber)
+	public Student getSingleStudent(String studentNumber)
 	{
 		for (Student s : db.getStudentTable()) {
-			if(s.getStudentNumber() == studentNumber)
+			if(String.valueOf(s.getStudentNumber()).equals(studentNumber))
 				return s;
 		}
 		
