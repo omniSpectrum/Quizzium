@@ -5,7 +5,10 @@
     <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="Dashboard">Quizzium <small>Powered By &lt;sarcasm&gt;Awesome&lt;/sarcasm&gt; Java</small></a>
+          <a class="navbar-brand" href="Dashboard">
+          	<img src="/Quizzium/res/img/brightness.png" alt="logo" height="35" align="middle"/>
+          	Quizzium <small>Powered By &lt;sarcasm&gt;Awesome&lt;/sarcasm&gt; Java</small>
+          </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
