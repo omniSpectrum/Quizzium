@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Student {
 	
-	private int studentNumber;
+	private String studentNumber;
 	
 	private ArrayList<StudentAttempt> studentAttempts;
 	
@@ -12,11 +12,11 @@ public class Student {
 		studentAttempts = new ArrayList<StudentAttempt>();
 	}
 
-	public int getStudentNumber() {
+	public String getStudentNumber() {
 		return studentNumber;
 	}
 
-	public void setStudentNumber(int studentNumber) {
+	public void setStudentNumber(String studentNumber) {
 		this.studentNumber = studentNumber;
 	}
 

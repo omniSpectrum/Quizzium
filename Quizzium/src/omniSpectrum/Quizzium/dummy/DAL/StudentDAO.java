@@ -29,7 +29,7 @@ public class StudentDAO {
 		//ELSE student DOESNT exist --> create, add to DB, return NULL
 		else{
 			s = new Student();
-			s.setStudentNumber(Integer.parseInt(studentNumber));
+			s.setStudentNumber(studentNumber);
 			db.getStudentTable().add(s);
 		}
 		return null;

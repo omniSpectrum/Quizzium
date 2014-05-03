@@ -115,11 +115,11 @@ public class DbEmulation {
 		
 		//Adding Students
 		Student s1 = new Student();
-		s1.setStudentNumber(1234567);
+		s1.setStudentNumber("a1234567");
 		Student s2 = new Student();
-		s2.setStudentNumber(1234588);
+		s2.setStudentNumber("a1234588");
 		Student s3 = new Student();
-		s3.setStudentNumber(1234599);
+		s3.setStudentNumber("a1234599");
 		
 		getStudentTable().add(s1);
 		getStudentTable().add(s2);
