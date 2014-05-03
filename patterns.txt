@@ -1,5 +1,0 @@
-http://balusc.blogspot.fi/2010/08/using-mvc-design-pattern-with.html
-
-http://stackoverflow.com/questions/3541077/design-patterns-web-based-applications
-
-http://www.javaworld.com/article/2073018/java-web-development/foundations-of-jsp-design-patterns--the-view-helper-pattern.html
