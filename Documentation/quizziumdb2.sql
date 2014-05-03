@@ -1,8 +1,8 @@
--- MySQL dump 10.14  Distrib 5.5.36-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.14  Distrib 5.5.37-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: quizziumdb2
 -- ------------------------------------------------------
--- Server version	5.5.36-MariaDB-log
+-- Server version	5.5.37-MariaDB-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -114,8 +114,8 @@ CREATE TABLE `Quizz` (
   `name` varchar(45) NOT NULL,
   `createdAt` datetime NOT NULL,
   `Teacher_createdBy` int(11) NOT NULL,
-  `QuizzStarted` datetime NOT NULL,
-  `QuizzEnded` datetime NOT NULL,
+  `QuizzStarted` datetime DEFAULT NULL,
+  `QuizzEnded` datetime DEFAULT NULL,
   PRIMARY KEY (`quizzId`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `QuizzStarted_UNIQUE` (`QuizzStarted`),
@@ -143,7 +143,8 @@ DROP TABLE IF EXISTS `Student`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Student` (
   `studentNumber` varchar(45) NOT NULL,
-  PRIMARY KEY (`studentNumber`)
+  PRIMARY KEY (`studentNumber`),
+  UNIQUE KEY `studentNumber_UNIQUE` (`studentNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -226,8 +227,9 @@ CREATE TABLE `Teacher` (
   `password` varchar(45) NOT NULL,
   `firstName` varchar(45) DEFAULT NULL,
   `lastName` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`teacherId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`teacherId`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 20:06:48
+-- Dump completed on 2014-05-03 16:12:08
