@@ -10,7 +10,7 @@
 </head>
 <body>
 <%@ include file="../shared/studentMenu.jsp"%> 
-<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt"%>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.StudentAttempt"%>
 <% StudentAttempt att = (StudentAttempt)request.getAttribute("AttemptRecord"); %>
 
 <div class="container">

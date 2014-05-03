@@ -53,11 +53,11 @@ public class Attempt extends HttpServlet {
 		}
 		else{
 			//Random order of questions
-			Collections.shuffle(currentQuiz.getQuestions());
+			//Collections.shuffle(currentQuiz.getQuestions());
 			
 			//Random order of answers within questions
 			for (Question question : currentQuiz.getQuestions()){
-				Collections.shuffle(question.getAnswerOptions());
+				//Collections.shuffle(question.getAnswerOptions());
 			}
 
 			//pass quiz to view
@@ -114,12 +114,12 @@ public class Attempt extends HttpServlet {
 				for (Alternative answerAlternative : question.getAlternatives()) {
 					
 					if(answerAlternative.getAlternativeId() == studentAnswer){
-						myAttempt.getStudentAnswerses().add(answerAlternative);
+//						myAttempt.getStudentAnswerses().add(answerAlternative);
 						
 						// Cross-check actual answer against expected (correct) answer
-						if (answerAlternative == question.getCorrectAnswer()) {
-							amountRight++;
-						}
+//						if (answerAlternative == question.getCorrectAnswer()) {
+//							amountRight++;
+//						}
 					}
 				}
 			}
@@ -129,7 +129,7 @@ public class Attempt extends HttpServlet {
 			myAttempt.setResult(total);
 			
 			//Insert attempt into DB
-			dbStudent.addAttempt(myAttempt);
+			//dbStudent.addAttempt(myAttempt);
 			
 			// Attach an object to request
 			request.setAttribute("AttemptRecord", myAttempt);

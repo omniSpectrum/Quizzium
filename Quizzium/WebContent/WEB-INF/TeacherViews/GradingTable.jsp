@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
-<%@ page import="omniSpectrum.Quizzium.Models.Quiz" %>
-<%@ page import="omniSpectrum.Quizzium.Models.Student" %>
-<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.Quiz" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.Student" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.StudentAttempt" %>
 <%@ page import="java.util.ArrayList" %>
 
 </head>

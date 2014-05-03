@@ -8,9 +8,9 @@
 <%@ include file="../shared/headContent.jsp" %>
 <link rel="stylesheet" href="/Quizzium/res/css/bootstrap-switch.min.css" />
 
-<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
-<%@ page import="omniSpectrum.Quizzium.Models.Question" %>
-<%@ page import="omniSpectrum.Quizzium.Models.AnswerAlternative" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.StudentAttempt" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.Question" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.AnswerAlternative" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 

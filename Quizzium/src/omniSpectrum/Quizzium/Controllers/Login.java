@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import omniSpectrum.Quizzium.DAL.TeacherDAO;
-import omniSpectrum.Quizzium.Models.Teacher;
+import omniSpectrum.Quizzium.dummy.DAL.TeacherDAO;
+import omniSpectrum.Quizzium.dummy.Models.Teacher;
 import omniSpectrum.Quizzium.utils.Helper;
 
 /**

@@ -10,9 +10,9 @@
 <body>
 	<%@ include file="../shared/studentMenu.jsp"%> 
 
-	<%@ page import="omniSpectrum.Quizzium.Models.Quiz"%>
-	<%@ page import="omniSpectrum.Quizzium.Models.Question"%>
-	<%@ page import="omniSpectrum.Quizzium.Models.AnswerAlternative"%>
+	<%@ page import="omniSpectrum.Quizzium.dummy.Models.Quiz"%>
+	<%@ page import="omniSpectrum.Quizzium.dummy.Models.Question"%>
+	<%@ page import="omniSpectrum.Quizzium.dummy.Models.AnswerAlternative"%>
 	
 	<% Quiz currentQuiz = (Quiz) request.getAttribute("currentQuiz"); %>
 	

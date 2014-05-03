@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import omniSpectrum.Quizzium.DAL.StudentDAO;
-import omniSpectrum.Quizzium.Models.StudentAttempt;
+import omniSpectrum.Quizzium.dummy.DAL.StudentDAO;
+import omniSpectrum.Quizzium.dummy.Models.StudentAttempt;
 import omniSpectrum.Quizzium.utils.Helper;
 
 /**

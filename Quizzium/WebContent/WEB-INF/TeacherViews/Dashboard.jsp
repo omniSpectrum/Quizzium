@@ -8,7 +8,7 @@
 <%@ include file="../shared/headContent.jsp" %>
 <link rel="stylesheet" href="/Quizzium/res/css/bootstrap-switch.min.css" />
 
-<%@ page import="omniSpectrum.Quizzium.Models.Quiz" %>
+<%@ page import="omniSpectrum.Quizzium.dummy.Models.Quiz" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
