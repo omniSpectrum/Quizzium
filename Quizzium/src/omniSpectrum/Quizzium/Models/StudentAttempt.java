@@ -1,5 +1,6 @@
 package omniSpectrum.Quizzium.Models;
 
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,8 +21,6 @@ import javax.persistence.TemporalType;
 @Table(name = "StudentAttempt", catalog = "quizziumdb2")
 public class StudentAttempt implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private Integer studentAttemptId;
 	private Student student;
 	private Quizz quizz;
@@ -81,7 +80,7 @@ public class StudentAttempt implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "attemptDate", nullable = false, length = 0)
+	@Column(name = "attemptDate", nullable = false, length = 19)
 	public Date getAttemptDate() {
 		return this.attemptDate;
 	}
@@ -107,4 +106,5 @@ public class StudentAttempt implements java.io.Serializable {
 	public void setStudentAnswerses(Set<StudentAnswers> studentAnswerses) {
 		this.studentAnswerses = studentAnswerses;
 	}
+
 }

@@ -1,5 +1,6 @@
 package omniSpectrum.Quizzium.Models;
 
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -13,8 +14,6 @@ import javax.persistence.Table;
 @Table(name = "Student", catalog = "quizziumdb2")
 public class Student implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private String studentNumber;
 	private Set<StudentAttempt> studentAttempts = new HashSet<StudentAttempt>(0);
 

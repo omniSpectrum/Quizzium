@@ -20,12 +20,10 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "Quizz", catalog = "quizziumdb2", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "name"),
-		@UniqueConstraint(columnNames = "QuizzStarted"),
-		@UniqueConstraint(columnNames = "QuizzEnded") })
+		@UniqueConstraint(columnNames = "QuizzEnded"),
+		@UniqueConstraint(columnNames = "QuizzStarted") })
 public class Quizz implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private Integer quizzId;
 	private Teacher teacher;
 	private String name;
@@ -38,13 +36,10 @@ public class Quizz implements java.io.Serializable {
 	public Quizz() {
 	}
 
-	public Quizz(Teacher teacher, String name, Date createdAt,
-			Date quizzStarted, Date quizzEnded) {
+	public Quizz(Teacher teacher, String name, Date createdAt) {
 		this.teacher = teacher;
 		this.name = name;
 		this.createdAt = createdAt;
-		this.quizzStarted = quizzStarted;
-		this.quizzEnded = quizzEnded;
 	}
 
 	public Quizz(Teacher teacher, String name, Date createdAt,
@@ -90,7 +85,7 @@ public class Quizz implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "createdAt", nullable = false, length = 0)
+	@Column(name = "createdAt", nullable = false, length = 19)
 	public Date getCreatedAt() {
 		return this.createdAt;
 	}
@@ -100,7 +95,7 @@ public class Quizz implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "QuizzStarted", unique = true, nullable = false, length = 0)
+	@Column(name = "QuizzStarted", unique = true, length = 19)
 	public Date getQuizzStarted() {
 		return this.quizzStarted;
 	}
@@ -110,7 +105,7 @@ public class Quizz implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "QuizzEnded", unique = true, nullable = false, length = 0)
+	@Column(name = "QuizzEnded", unique = true, length = 19)
 	public Date getQuizzEnded() {
 		return this.quizzEnded;
 	}

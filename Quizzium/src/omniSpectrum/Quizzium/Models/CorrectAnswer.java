@@ -1,5 +1,6 @@
 package omniSpectrum.Quizzium.Models;
 
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -14,8 +15,6 @@ import javax.persistence.Table;
 @Table(name = "CorrectAnswer", catalog = "quizziumdb2")
 public class CorrectAnswer implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private CorrectAnswerId id;
 	private Question question;
 	private Alternative alternative;

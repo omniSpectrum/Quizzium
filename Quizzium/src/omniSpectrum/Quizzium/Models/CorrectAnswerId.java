@@ -7,8 +7,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CorrectAnswerId implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private int questionQuestionId;
 	private int alternativeAlternativeId;
 

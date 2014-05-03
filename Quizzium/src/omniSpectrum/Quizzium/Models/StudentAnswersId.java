@@ -6,8 +6,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class StudentAnswersId implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private int studentAttemptStudentAttemptId;
 	private int alternativeAlternativeId;
 

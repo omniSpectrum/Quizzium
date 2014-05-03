@@ -9,7 +9,8 @@
         <property name="hibernate.connection.password">javasucks</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/quizziumdb2</property>
         <property name="hibernate.connection.username">quizzium</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="omniSpectrum.Quizzium.Models.Student" />

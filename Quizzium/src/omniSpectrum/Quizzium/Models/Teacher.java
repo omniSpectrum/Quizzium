@@ -11,13 +11,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Teacher", catalog = "quizziumdb2")
+@Table(name = "Teacher", catalog = "quizziumdb2", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class Teacher implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
 	private Integer teacherId;
 	private String username;
 	private String password;
@@ -34,7 +33,7 @@ public class Teacher implements java.io.Serializable {
 	}
 
 	public Teacher(String username, String password, String firstName,
-			String lastName, Set<Quizz> quizzs) {
+			String lastName, Set quizzs) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -53,7 +52,7 @@ public class Teacher implements java.io.Serializable {
 		this.teacherId = teacherId;
 	}
 
-	@Column(name = "username", nullable = false, length = 45)
+	@Column(name = "username", unique = true, nullable = false, length = 45)
 	public String getUsername() {
 		return this.username;
 	}
