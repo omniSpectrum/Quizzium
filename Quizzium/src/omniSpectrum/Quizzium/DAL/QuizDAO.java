@@ -17,6 +17,8 @@ import omniSpectrum.Quizzium.Models.Quizz;
 
 public class QuizDAO extends GenericDao<Quizz, Integer> {
 	
+	String DATE_FORMAT_NOW = "yyyy-MM-dd hh:mm:ss";
+	
 	public QuizDAO(){
 		
 	}
@@ -25,39 +27,26 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 	protected Class<Quizz> getEntityClass() {
 		return Quizz.class;
 	}
-
-//	public ArrayList<Quiz> getAllQuizes(){
-//		return DbEmulation.getDbInstance().getQuizTable();
-//	}
 	
 	public Quizz getCurrentQuiz(String currentDate) throws ParseException{
-		java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		java.text.SimpleDateFormat df = new java.text.SimpleDateFormat(DATE_FORMAT_NOW);
 		java.util.Date restrictedDate = df.parse(currentDate);
+		@SuppressWarnings("unused")
 		org.hibernate.Transaction tx = getCurrentSession().beginTransaction();
 		Criteria criteria = getCurrentSession().createCriteria(Quizz.class);
 		criteria.add(Restrictions.le("quizzStarted", restrictedDate));
 		criteria.add(Restrictions.gt("quizzEnded", restrictedDate));
 		return (Quizz)criteria.uniqueResult();
 	}
-
-//	public void updateQuizState(Quiz cq, Boolean targetState) {
-//		
-//		// TODO real DB interaction UPDATE
-//		for (Quiz q : DbEmulation.getDbInstance().getQuizTable()) {
-//			q.setState(Boolean.FALSE);
-//		}
-//		cq.setState(targetState);
-//	}
-//
-//	public Quiz getQuizById(Integer quizId) {
-//
-//		// TODO real DB interaction SELECT WHERE
-//		for (Quiz q : DbEmulation.getDbInstance().getQuizTable()) {			
-//			if (q.getId() == quizId) {
-//				return q;
-//			}
-//		}
-//		return null;
-//	}
-
+	public Quizz getCurrentQuiz(){
+	    Date currentDateTime = Calendar.getInstance().getTime();
+	    SimpleDateFormat df = new SimpleDateFormat(DATE_FORMAT_NOW);
+	    String stringDate = df.format(currentDateTime);
+	    try{
+	        return this.getCurrentQuiz(stringDate);	        
+	    }
+	    catch(ParseException e){
+	     	return null;
+	    }
+	}
 }
