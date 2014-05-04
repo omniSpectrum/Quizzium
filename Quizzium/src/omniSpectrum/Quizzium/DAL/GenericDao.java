@@ -50,7 +50,6 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 		trans.commit();
 	}
 
-	//TODO: Fix the bug here!!!!
 	@Override
 	public T findById(PK id) {
 		Transaction tx = getCurrentSession().beginTransaction();

@@ -35,8 +35,8 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 		java.util.Date restrictedDate = df.parse(currentDate);
 		org.hibernate.Transaction tx = getCurrentSession().beginTransaction();
 		Criteria criteria = getCurrentSession().createCriteria(Quizz.class);
-		criteria.add(Restrictions.ge("quizzStarted", restrictedDate));
-		criteria.add(Restrictions.le("quizzEnded", restrictedDate));
+		criteria.add(Restrictions.le("quizzStarted", restrictedDate));
+		criteria.add(Restrictions.gt("quizzEnded", restrictedDate));
 		return (Quizz)criteria.uniqueResult();
 	}
 

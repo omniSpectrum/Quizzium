@@ -21,7 +21,7 @@ public class TeacherDAOTests {
 	@Test
 	public void testLoginCheck(){
 		
-		Teacher testTeacher = teacherDao.teacherLoginCheck("jukka", "jusju");
+		Teacher testTeacher = teacherDao.teacherLoginCheck("freida", "danfrei");
 		
 		assertNotNull(testTeacher);
 	}
