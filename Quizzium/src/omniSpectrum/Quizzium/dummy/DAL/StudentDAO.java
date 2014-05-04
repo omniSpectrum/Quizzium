@@ -19,7 +19,7 @@ public class StudentDAO {
 		
 		//IF student exists --> check if contains Quiz with QuizId		
 		Student s = getSingleStudent(studentNumber);
-		
+
 		if (s != null) {		
 			for (StudentAttempt st : s.getAttempts()) {
 				if(st.getQuiz().getId() == quizId)

@@ -17,7 +17,7 @@
 	<div class="jumbotron">
 		<h1><%=(att.getResult() > 50)? "Congrats! =)" : "Sadly... :(" %></h1>
 		<p class="lead">
-			st.No.: a<%= att.getStudent().getStudentNumber() %>	<br/>
+			st.No.: <%= att.getStudent().getStudentNumber() %>	<br/>
 			quiz: <%= att.getQuiz().getName() %> <br/>				
 		</p>
 		<h2>Result: <%= att.getResult() %> out of 100 <br/></h2>
