@@ -10,12 +10,20 @@ public class TeacherDAOTests {
 	
 	private TeacherDAO teacherDao = new TeacherDAO(); 
 	
+//	@Test
+//	public void testSave() {
+//		Teacher teacher = new Teacher("jukka", "jusju");
+//		teacherDao.save(teacher);
+//		
+//		assertNotNull(teacherDao.findById(3));
+//	}
+	
 	@Test
-	public void testSave() {
-		Teacher teacher = new Teacher("jukka", "jusju");
-		teacherDao.save(teacher);
+	public void testLoginCheck(){
 		
-		assertNotNull(teacherDao.findById(3));
+		Teacher testTeacher = teacherDao.teacherLoginCheck("jukka", "jusju");
+		
+		assertNotNull(testTeacher);
 	}
 
 }
