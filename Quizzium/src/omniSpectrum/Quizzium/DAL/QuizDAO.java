@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transaction;
 
@@ -31,10 +32,11 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 	
 	public Quizz getCurrentQuiz(String currentDate) throws ParseException{
 		java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
-		java.util.Date fromDate = df.parse(currentDate);
+		java.util.Date restrictedDate = df.parse(currentDate);
 		org.hibernate.Transaction tx = getCurrentSession().beginTransaction();
-		Criteria criteria = getCurrentSession().createCriteria(Quizz.class)
-				.add(Restrictions.ge("quizzStarted", fromDate));
+		Criteria criteria = getCurrentSession().createCriteria(Quizz.class);
+		criteria.add(Restrictions.ge("quizzStarted", restrictedDate));
+		criteria.add(Restrictions.le("quizzEnded", restrictedDate));
 		return (Quizz)criteria.uniqueResult();
 	}
 

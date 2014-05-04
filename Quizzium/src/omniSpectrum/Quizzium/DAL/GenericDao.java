@@ -5,9 +5,11 @@ import java.util.List;
 
 import omniSpectrum.Quizzium.utils.HibernateUtil;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 
 public abstract class GenericDao<T, PK extends Serializable> implements IGenericDao<T, PK> {
@@ -60,8 +62,8 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		getCurrentSession().beginTransaction();
+		return findByCriteria();
 	}
 
 	@Override
@@ -74,5 +76,13 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
     protected DetachedCriteria createDetachedCriteria() {
           return DetachedCriteria.forClass(getEntityClass());
     };
+    
+    protected List<T> findByCriteria(Criterion... criterion) {  
+        Criteria crit = getCurrentSession().createCriteria(getEntityClass());  
+        for (Criterion c : criterion) {  
+            crit.add(c);  
+        }  
+        return crit.list();  
+   }
 
 }
