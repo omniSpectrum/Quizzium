@@ -1,5 +1,17 @@
 package omniSpectrum.Quizzium.DAL;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.transaction.Transaction;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
+
 import omniSpectrum.Quizzium.Models.Quizz;
 
 public class QuizDAO extends GenericDao<Quizz, Integer> {
@@ -17,10 +29,13 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 //		return DbEmulation.getDbInstance().getQuizTable();
 //	}
 	
-	public Quizz getCurrentQuiz(){
-		
-		//TODO Fetch from DB quiz that has timeframe 'now'
-		return null;
+	public Quizz getCurrentQuiz(String currentDate) throws ParseException{
+		java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date fromDate = df.parse(currentDate);
+		org.hibernate.Transaction tx = getCurrentSession().beginTransaction();
+		Criteria criteria = getCurrentSession().createCriteria(Quizz.class)
+				.add(Restrictions.ge("quizzStarted", fromDate));
+		return (Quizz)criteria.uniqueResult();
 	}
 
 //	public void updateQuizState(Quiz cq, Boolean targetState) {
