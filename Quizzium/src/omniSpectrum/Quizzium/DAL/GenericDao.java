@@ -53,6 +53,7 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 	@Override
 	public T findById(PK id) {
 		Transaction tx = getCurrentSession().beginTransaction();
+		@SuppressWarnings("unchecked")
 		T instance = (T) getCurrentSession().get(getEntityClass(), id);
 		tx.commit();
         return instance;
@@ -61,8 +62,10 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 
 	@Override
 	public List<T> findAll() {
-		getCurrentSession().beginTransaction();
-		return findByCriteria();
+		Transaction trans = getCurrentSession().beginTransaction();
+		List<T> myList = findByCriteria();
+		trans.commit();
+		return myList;
 	}
 
 	@Override
@@ -76,7 +79,8 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
           return DetachedCriteria.forClass(getEntityClass());
     };
     
-    protected List<T> findByCriteria(Criterion... criterion) {  
+    @SuppressWarnings("unchecked")
+	protected List<T> findByCriteria(Criterion... criterion) {  
         Criteria crit = getCurrentSession().createCriteria(getEntityClass());  
         for (Criterion c : criterion) {  
             crit.add(c);  

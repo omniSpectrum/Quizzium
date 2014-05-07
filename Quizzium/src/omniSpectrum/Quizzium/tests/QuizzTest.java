@@ -14,7 +14,7 @@ public class QuizzTest {
 	@Test
 	public void testGetCurrentQuiz() throws ParseException {
 		QuizDAO currentQuizz = new QuizDAO();
-		Quizz myQuizz = currentQuizz.getCurrentQuiz("2014-05-11");
+		Quizz myQuizz = currentQuizz.getCurrentQuiz();
 		
 		assertNotNull(myQuizz);
 	}

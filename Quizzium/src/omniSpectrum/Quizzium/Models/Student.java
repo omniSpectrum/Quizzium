@@ -39,7 +39,7 @@ public class Student implements java.io.Serializable {
 		this.studentNumber = studentNumber;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "student")
 	public Set<StudentAttempt> getStudentAttempts() {
 		return this.studentAttempts;
 	}

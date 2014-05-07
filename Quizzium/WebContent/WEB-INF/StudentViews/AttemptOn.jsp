@@ -10,11 +10,11 @@
 <body>
 	<%@ include file="../shared/studentMenu.jsp"%> 
 
-	<%@ page import="omniSpectrum.Quizzium.dummy.Models.Quiz"%>
-	<%@ page import="omniSpectrum.Quizzium.dummy.Models.Question"%>
-	<%@ page import="omniSpectrum.Quizzium.dummy.Models.AnswerAlternative"%>
+	<%@ page import="omniSpectrum.Quizzium.Models.Quizz"%>
+	<%@ page import="omniSpectrum.Quizzium.Models.Question"%>
+	<%@ page import="omniSpectrum.Quizzium.Models.Alternative"%>
 	
-	<% Quiz currentQuiz = (Quiz) request.getAttribute("currentQuiz"); %>
+	<% Quizz currentQuiz = (Quizz) request.getAttribute("currentQuiz"); %>
 	
 	<div class="container">
 		<div class="row">
@@ -34,15 +34,15 @@
 					<% for (Question question : currentQuiz.getQuestions()) { %>
 
 					<div class="form-group">
-						<p> <%=question.getQuestionText()%> </p>
+						<p> <%=question.getDescription()%> </p>
 						
-						<% for (AnswerAlternative answerOption : question.getAnswerOptions()) { %>
+						<% for (Alternative answerOption : question.getAlternatives()) { %>
 						<div class="radio">
 							<label> 
 								<input type="radio" 
 									name="<%=question.getQuestionId()%>"
 									value="<%=answerOption.getAlternativeId()%>" /> 
-									<%=answerOption.getAnswerText()%>
+									<%=answerOption.getDescription()%>
 							</label>
 						</div>
 						<%

@@ -9,46 +9,26 @@ public class StudentDAO extends GenericDao <Student, String> {
 	protected Class<Student> getEntityClass() {
 		return Student.class;
 	}
-
+	
 	public StudentAttempt getSingleAttempt(String studentNumber, int quizId) {
 		
-		//IF student exists --> check if contains Quiz with QuizId		
-		Student s = findById(studentNumber);
+		Student student = findById(studentNumber);
+		StudentAttempt attempt = null;
 		
-		if (s != null) {		
-			for (StudentAttempt st : s.getStudentAttempts()) {
-				if(st.getQuizz().getQuizzId() == quizId)
-					return st;
+		//If student exists --> find attempt
+		if (student != null) {
+			//Check for attempt
+			for (StudentAttempt att : student.getStudentAttempts()) {
+				if (att.getQuizz().getQuizzId() == quizId) {
+					attempt = att;
+				}
 			}
 		}
-		//ELSE student DOESNT exist --> create, add to DB, return NULL
-		else{
-			s = new Student();
-			s.setStudentNumber(studentNumber);
-			super.save(s);
+		//ELSE --> create student, return null
+		else {
+			save(new Student(studentNumber));			
 		}
-		return null;
+		
+		return attempt;
 	}
-//	public StudentAttempt getSingleAttempt(int attemptId) {
-//		
-//		for (StudentAttempt att : DbEmulation.getDbInstance().getAttemptTable()) {
-//			if(att.getAttemptId() == attemptId)
-//				return att;
-//		}
-//		return null;
-//	}
-	
-//	public void addAttempt(StudentAttempt attempt) {
-//		
-//		attempt.setAttemptDate(new Date());
-//		attempt.setAttemptId((new Random()).nextInt(1000));
-//		attempt.getStudent().getAttempts().add(attempt);
-//		DbEmulation.getDbInstance().getAttemptTable().add(attempt);
-//	}
-//	
-//	public ArrayList<Student> getAllStudents(){
-//		
-//		// THIS METHOD SHOULD ALSO INCLUDE RELATED ATTEMPTS
-//		return DbEmulation.getDbInstance().getStudentTable();
-//	}
 }

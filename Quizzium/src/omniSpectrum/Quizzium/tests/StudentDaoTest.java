@@ -6,12 +6,14 @@ import java.util.List;
 
 import omniSpectrum.Quizzium.DAL.StudentDAO;
 import omniSpectrum.Quizzium.Models.Student;
+import omniSpectrum.Quizzium.Models.StudentAttempt;
 
 import org.junit.Test;
 
 public class StudentDaoTest {
 
 	private StudentDAO student = new StudentDAO();
+	
 	
 //	@Test
 //	public void testSave() {
@@ -36,13 +38,13 @@ public class StudentDaoTest {
 //		assertEquals(expected.getStudentNumber(), actual.getStudentNumber());
 //	}
 	
-	@Test
-	public void testFindAll(){
-		List<Student> students = student.findAll();
-		
-		assertEquals(students.get(0).getStudentNumber(), "a1203247");
-		assertNotNull(students);
-	}
+//	@Test
+//	public void testFindAll(){
+//		List<Student> students = student.findAll();
+//		
+//		assertEquals(students.get(0).getStudentNumber(), "a1203247");
+//		assertNotNull(students);
+//	}
 	
 //	@Test
 //	public void testDelete() {
@@ -52,4 +54,10 @@ public class StudentDaoTest {
 //		assertNull(student.findById("a1203245"));
 //	}
 //
+	@Test
+	public void testFindSingleAttempt(){
+		StudentAttempt sa = student.getSingleAttempt("a1234567", 1);
+		
+		assertNotNull(sa);
+	}
 }

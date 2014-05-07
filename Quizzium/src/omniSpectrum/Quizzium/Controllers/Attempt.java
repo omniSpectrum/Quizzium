@@ -51,60 +51,48 @@ public class Attempt extends HttpServlet {
 		response.setDateHeader("Expires", 0); // Proxies.
 		
 		//Get Quiz
-		Quizz currentQuiz = dbQuiz.getCurrentQuiz();
-			
-		System.out.println(((currentQuiz == null)? "Nothing" : currentQuiz.getName()));
-
+		Quizz currentQuiz = dbQuiz.getCurrentQuiz();		
 		String viewToGo;
 		
-//		Quiz currentQuiz = dbQuiz.getCurrentQuiz();
-//		String viewToGo;
-//				
-//		// If no current Quiz
-//		if (currentQuiz == null) {
-//			viewToGo = ATTEMPT_OFF_VIEW;
-//		}
-//		else{
-//			//Check session
-//			StudentAttempt myAttempt = 
-//					(StudentAttempt) request.getSession().getAttribute("attempt");
-//			// If student has already Done the Current Quiz
-//			if (myAttempt != null) {
-//				request.setAttribute("AttemptRecord", myAttempt);			
-//				viewToGo = ATTEMPT_RESULT_VIEW;
-//			}
-//			else{
-//				//Random order of questions
-//				Collections.shuffle(currentQuiz.getQuestions());
-//				
-//				//Random order of answers within questions
-//				for (Question question : currentQuiz.getQuestions()){
-//					Collections.shuffle(question.getAnswerOptions());
-//				}
-//
-//				//pass quiz to view
-//				request.setAttribute("currentQuiz", currentQuiz);
-//				//View to go
-//				viewToGo = ATTEMPT_ON_VIEW;
-//			}
-//		}
-//			
-//		//redirect to page	
-//		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
-//	    view.forward(request, response);
+		if (currentQuiz == null) {
+			viewToGo = ATTEMPT_OFF_VIEW;
+		}
+		else{
+			//Check session
+			StudentAttempt myAttempt =
+					(StudentAttempt) request.getSession().getAttribute("attempt");
+			
+			if (myAttempt != null) {
+				request.setAttribute("AttemptRecord", myAttempt);			
+				viewToGo = ATTEMPT_RESULT_VIEW;
+			}
+			else{
+				//TODO Random order of questions and answers
+				
+				//pass quiz to view
+				request.setAttribute("currentQuiz", currentQuiz);
+				//View to go
+				viewToGo = ATTEMPT_ON_VIEW;
+			}
+		}
+		
+		//redirect to page	
+		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
+	    view.forward(request, response);
 	}
 
 	/**
 	 * Handles student answers and gives evaluation for quiz attempt
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//In case student was doing quiz for 10 hours
+		Quizz currentQuiz = dbQuiz.getCurrentQuiz();
+		//In case student tries to do same Quiz again
+		String studentNumber = request.getParameter("studentNumber");
+		StudentAttempt myAttempt = 
+				dbStudent.getSingleAttempt(studentNumber, currentQuiz.getQuizzId());
 		
-//		//In case student was doing quiz for 10 hours
-//		Quiz currentQuiz = dbQuiz.getCurrentQuiz();
-//		//In case student tries to do same Quiz again
-//		String studentNumber = request.getParameter("studentNumber");
-//		StudentAttempt myAttempt = 
-//				dbStudent.getSingleAttempt(studentNumber, currentQuiz.getId());
+
 //		
 //		String viewToGo;
 //		
