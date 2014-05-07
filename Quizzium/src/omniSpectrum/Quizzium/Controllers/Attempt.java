@@ -91,66 +91,73 @@ public class Attempt extends HttpServlet {
 		String studentNumber = request.getParameter("studentNumber");
 		StudentAttempt myAttempt = 
 				dbStudent.getSingleAttempt(studentNumber, currentQuiz.getQuizzId());
+				
+		String viewToGo;
 		
+		if (currentQuiz == null || myAttempt != null) {
+			String mess = "Or student with number " 
+						+ studentNumber.toString() 
+						+ " has already done this quiz";
+			request.setAttribute("offMessage", mess);
+			viewToGo = ATTEMPT_OFF_VIEW;
+		}
+		else{
+			
+			//Connect objects
+			myAttempt = new StudentAttempt();
+			myAttempt.setQuizz(currentQuiz);
+			myAttempt.setStudent(dbStudent.findById(studentNumber));
+			
+			//Collect Values, Collect points "n out of m"
+			int amountRight = 0;
+			int amountOut = currentQuiz.getQuestions().size();
+			
+			for (Question question : currentQuiz.getQuestions()) {
+				
+				//Fetch what answer student selected
+				Integer quesId = question.getQuestionId();
+				String answerChoosen = request.getParameter(quesId.toString());
+				int studentAnswerNumber = 
+						Integer.parseInt(answerChoosen != null ? answerChoosen : "0");
+				
+				for (Alternative answerAlternative : question.getAlternatives()) {
+					
+					if(answerAlternative.getAlternativeId() == studentAnswerNumber){
 
-//		
-//		String viewToGo;
-//		
-//		if (currentQuiz == null || myAttempt != null) {
-//			String mess = "Or student with number " 
-//						+ studentNumber.toString() 
-//						+ " has already done this quiz";
-//			request.setAttribute("offMessage", mess);
-//			viewToGo = ATTEMPT_OFF_VIEW;
-//		}
-//		else{
-//			
-//			//Connect objects
-//			myAttempt = new StudentAttempt();
-//			myAttempt.setQuiz(currentQuiz);
-//			myAttempt.setStudent(dbStudent.getSingleStudent(studentNumber));
-//			
-//			//Collect Values, Collect points "n out of m"
-//			int amountRight = 0;
-//			int amountOut = currentQuiz.getQuestions().size();
-//			
-//			for (Question question : currentQuiz.getQuestions()) {
-//				
-//				Integer quesId = question.getQuestionId();
-//				String answerChoosen = request.getParameter(quesId.toString());
-//				int studentAnswer = 
-//						Integer.parseInt(answerChoosen != null ? answerChoosen : "0");
-//				
-//				for (AnswerAlternative answerAlternative : question.getAnswerOptions()) {
-//					
-//					if(answerAlternative.getAlternativeId() == studentAnswer){
-//						myAttempt.getStudentAnswers().add(answerAlternative);
-//						
-//						// Cross-check actual answer against expected (correct) answer
-//						if (answerAlternative == question.getCorrectAnswer()) {
-//							amountRight++;
-//						}
-//					}
-//				}
-//			}
-//			
-//			// Calculate result percentage			
-//			int total = (int) Math.round((amountRight*100.0) / amountOut);
-//			myAttempt.setResult(total);
-//			
-//			//Insert attempt into DB
-//			dbStudent.addAttempt(myAttempt);
-//			
-//			// Attach an object to request
-//			request.setAttribute("AttemptRecord", myAttempt);
-//				
-//			viewToGo = ATTEMPT_RESULT_VIEW;
-//			//Set session
-//			request.getSession().setAttribute("attempt", myAttempt);
-//		}
-//		
-//		//redirect to page	
-//		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
-//		view.forward(request, response);
+						//Add answer object to DB / Attempt
+						StudentAnswers myAnswer = new StudentAnswers();
+						myAnswer.setAlternative(answerAlternative);
+						myAnswer.setStudentAttempt(myAttempt);
+						myAttempt.getStudentAnswerses().add(myAnswer);
+						
+						// Insert myAnswer to DB
+						dbStudent.saveAnswer(myAnswer);
+						
+						// Cross-check actual answer against expected (correct) answer
+						if (question.getCorrectAnswers().contains(answerAlternative)) {
+							amountRight++;
+						}
+					}
+				}
+			}
+			
+			// Calculate result percentage			
+			int total = (int) Math.round((amountRight*100.0) / amountOut);
+			myAttempt.setResult(total);
+			
+			// Insert attempt into DB
+			dbStudent.saveAttempt(myAttempt);
+			
+			// Attach an object to request
+			request.setAttribute("AttemptRecord", myAttempt);				
+			viewToGo = ATTEMPT_RESULT_VIEW;
+			
+			//Set session
+			request.getSession().setAttribute("attempt", myAttempt);
+		}
+		
+		//redirect to page	
+		RequestDispatcher view = request.getRequestDispatcher(viewToGo);
+		view.forward(request, response);
 	}
 }

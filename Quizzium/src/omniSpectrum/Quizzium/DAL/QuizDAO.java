@@ -8,6 +8,7 @@ import java.util.Date;
 import omniSpectrum.Quizzium.Models.Quizz;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Restrictions;
 
 public class QuizDAO extends GenericDao<Quizz, Integer> {
@@ -26,17 +27,22 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 	public Quizz getCurrentQuiz(String currentDate) throws ParseException{
 		java.text.SimpleDateFormat df = new java.text.SimpleDateFormat(DATE_FORMAT_NOW);
 		java.util.Date restrictedDate = df.parse(currentDate);
+		
 		org.hibernate.Transaction tx = getCurrentSession().beginTransaction();
 		Criteria criteria = getCurrentSession().createCriteria(getEntityClass());
 		criteria.add(Restrictions.le("quizzStarted", restrictedDate));
 		criteria.add(Restrictions.gt("quizzEnded", restrictedDate));
-
-		return (Quizz)criteria.uniqueResult();
+		
+		Quizz q = (Quizz)criteria.uniqueResult();
+		Hibernate.initialize(q.getQuestions());
+		tx.commit();
+		return q;
 	}
 	public Quizz getCurrentQuiz(){
 	    Date currentDateTime = Calendar.getInstance().getTime();
 	    SimpleDateFormat df = new SimpleDateFormat(DATE_FORMAT_NOW);
 	    String stringDate = df.format(currentDateTime);
+	    
 	    try{
 	        return this.getCurrentQuiz(stringDate);	        
 	    }

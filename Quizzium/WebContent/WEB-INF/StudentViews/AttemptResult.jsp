@@ -10,7 +10,7 @@
 </head>
 <body>
 <%@ include file="../shared/studentMenu.jsp"%> 
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.StudentAttempt"%>
+<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt"%>
 <% StudentAttempt att = (StudentAttempt)request.getAttribute("AttemptRecord"); %>
 
 <div class="container">
@@ -18,7 +18,7 @@
 		<h1><%=(att.getResult() > 50)? "Congrats! =)" : "Sadly... :(" %></h1>
 		<p class="lead">
 			st.No.: <%= att.getStudent().getStudentNumber() %>	<br/>
-			quiz: <%= att.getQuiz().getName() %> <br/>				
+			quiz: <%= att.getQuizz().getName() %> <br/>				
 		</p>
 		<h2>Result: <%= att.getResult() %> out of 100 <br/></h2>
 	</div>

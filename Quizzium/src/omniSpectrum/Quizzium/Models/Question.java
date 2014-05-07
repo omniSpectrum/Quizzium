@@ -69,7 +69,7 @@ public class Question implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
 	public Set<Alternative> getAlternatives() {
 		return this.alternatives;
 	}
@@ -78,7 +78,7 @@ public class Question implements java.io.Serializable {
 		this.alternatives = alternatives;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
 	public Set<CorrectAnswer> getCorrectAnswers() {
 		return this.correctAnswers;
 	}

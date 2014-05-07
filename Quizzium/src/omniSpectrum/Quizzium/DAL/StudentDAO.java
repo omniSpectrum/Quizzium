@@ -1,6 +1,11 @@
 package omniSpectrum.Quizzium.DAL;
 
+import java.util.Calendar;
+
+import org.hibernate.Transaction;
+
 import omniSpectrum.Quizzium.Models.Student;
+import omniSpectrum.Quizzium.Models.StudentAnswers;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 
 public class StudentDAO extends GenericDao <Student, String> {
@@ -30,5 +35,19 @@ public class StudentDAO extends GenericDao <Student, String> {
 		}
 		
 		return attempt;
+	}
+	
+	public void saveAttempt(StudentAttempt attempt){		
+		attempt.setAttemptDate(Calendar.getInstance().getTime());
+		
+		Transaction trans = getCurrentSession().beginTransaction();
+		getCurrentSession().save(attempt);
+		trans.commit();
+	}
+	
+	public void saveAnswer(StudentAnswers answer){
+		Transaction trans = getCurrentSession().beginTransaction();
+		getCurrentSession().save(answer);
+		trans.commit();
 	}
 }
