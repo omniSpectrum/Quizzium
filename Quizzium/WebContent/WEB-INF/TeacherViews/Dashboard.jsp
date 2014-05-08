@@ -41,8 +41,12 @@
 				<td><%=df.format(q.getCreatedAt()) %></td>
 				<td><%=q.getTeacher().getFirstName() + " " + q.getTeacher().getLastName() %></td>
 				<td><%=q.getQuestions().size() %></td>
-				<td><%= dfQuiz.format(q.getQuizzStarted()) %> </td>
-				<td><%= dfQuiz.format(q.getQuizzEnded()) %> </td>
+				<td><% if(q.getQuizzStarted() != null) 
+						out.print(dfQuiz.format(q.getQuizzStarted())); %> 
+				</td>
+				<td><% if(q.getQuizzEnded() != null) 
+						out.print(dfQuiz.format(q.getQuizzEnded())); %> 
+				</td>
 			</tr>
 			
 		<%} //End of For loop%>
