@@ -65,7 +65,7 @@ public class Quizz implements java.io.Serializable {
 		this.quizzId = quizzId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Teacher_createdBy", nullable = false)
 	public Teacher getTeacher() {
 		return this.teacher;
@@ -123,7 +123,7 @@ public class Quizz implements java.io.Serializable {
 		this.studentAttempts = studentAttempts;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "quizz")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "quizz")
 	public Set<Question> getQuestions() {
 		return this.questions;
 	}

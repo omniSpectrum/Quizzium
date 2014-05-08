@@ -7,7 +7,7 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="Dashboard">
           	<img src="/Quizzium/res/img/brightness.png" alt="logo" height="35" align="middle"/>
-          	Quizzium <small>Powered By &lt;sarcasm&gt;Awesome&lt;/sarcasm&gt; Java</small>
+          	Quizzium
           </a>
         </div>
         <div class="navbar-collapse collapse">

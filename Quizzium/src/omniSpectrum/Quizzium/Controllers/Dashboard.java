@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import omniSpectrum.Quizzium.dummy.DAL.QuizDAO;
-import omniSpectrum.Quizzium.dummy.Models.Quiz;
+import omniSpectrum.Quizzium.DAL.QuizDAO;
 import omniSpectrum.Quizzium.utils.Helper;
 
 /**
@@ -40,29 +39,14 @@ public class Dashboard extends HttpServlet {
 		//check if loggedIn
 		if (!Helper.checkIfLoggedIn(request.getSession())) {
 			// if NOT loggedIn
-			response.sendRedirect(LOGIN_CONTROLLER);
-						
+			response.sendRedirect(LOGIN_CONTROLLER);	
 		}
 		else{
-			request.setAttribute("quizList", db.getAllQuizes());	
+			request.setAttribute("quizList", db.findAll());	
 			
 			//redirect to page	
 			RequestDispatcher view = request.getRequestDispatcher(DASHBOARD_VIEW);
 			view.forward(request, response);
 		}
-	}
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Getting parameters
-		Integer quizId = Integer.parseInt((String)request.getParameter("quizId"));
-		Boolean targetState = 
-				Boolean.valueOf((String)request.getParameter("targetState"));   
-
-		Quiz cq = db.getQuizById(quizId);
-		db.updateQuizState(cq, targetState);			
 	}
 }

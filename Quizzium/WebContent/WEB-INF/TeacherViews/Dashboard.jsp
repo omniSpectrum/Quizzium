@@ -6,10 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
-<link rel="stylesheet" href="/Quizzium/res/css/bootstrap-switch.min.css" />
 
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.Quiz" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="omniSpectrum.Quizzium.Models.Quizz" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
 </head>
@@ -17,8 +16,10 @@
 	<%@ include file="../shared/teacherMenu.jsp" %>
 
 	<%  @SuppressWarnings("unchecked") // Uncheck casting suppress
-		ArrayList<Quiz> quizList = (ArrayList<Quiz>)request.getAttribute("quizList");
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
+		List<Quizz> quizList = (List<Quizz>)request.getAttribute("quizList");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dfQuiz = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	%>
 <div class="container">
 <div class="row">
 	<div class="col-md-12">
@@ -30,20 +31,18 @@
 			<th>Created At</th>
 			<th>Created By</th>
 			<th>Questions</th>
-			<th>State</th>
+			<th>Start</th>
+			<th>End</th>
 		</tr>
-		<% for(Quiz q : quizList){ %>
+		<% for(Quizz q : quizList){ %>
 			
 			<tr>
 				<td><%=q.getName() %></td>
 				<td><%=df.format(q.getCreatedAt()) %></td>
-				<td><%=q.getCreatedBy().getLastName() %></td>
+				<td><%=q.getTeacher().getFirstName() + " " + q.getTeacher().getLastName() %></td>
 				<td><%=q.getQuestions().size() %></td>
-				<td> 
-					<input type="checkbox" class="stateSwitch"
-						name="<%=q.getId() %>"
-						<%= (q.isState()? "checked" : "") %> />
-				</td>
+				<td><%= dfQuiz.format(q.getQuizzStarted()) %> </td>
+				<td><%= dfQuiz.format(q.getQuizzEnded()) %> </td>
 			</tr>
 			
 		<%} //End of For loop%>
@@ -54,10 +53,6 @@
 	</div>
 	</div>
 </div>
-
-<script type="text/javascript" src="/Quizzium/res/js/bootstrap-switch.min.js"></script>
-<script type="text/javascript">$('.stateSwitch').bootstrapSwitch();</script>
-<script type="text/javascript" src="/Quizzium/res/js/dashboardEvent.js"></script>
 
 </body>
 </html>
