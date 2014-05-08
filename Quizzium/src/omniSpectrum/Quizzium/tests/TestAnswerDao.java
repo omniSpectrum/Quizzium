@@ -18,17 +18,28 @@ public class TestAnswerDao {
 	private AlternativeDao alternative = new AlternativeDao();
 	private AttemptDao attempt = new AttemptDao();
 	
+//	@Test
+//	public void testSave() {
+//		Alternative myAlternative = alternative.findById(1);
+//		StudentAnswersId id = new StudentAnswersId(1, 1);
+//		StudentAttempt studentAttempt = attempt.findById(1);
+//		StudentAnswers myAnswers = new StudentAnswers(id, myAlternative, studentAttempt);
+//		answer.save(myAnswers);
+//		
+//		StudentAnswersId id2 = new StudentAnswersId(1, 1);
+//		
+//		assertNotNull(answer.findById(id2));
+//	}
 	@Test
-	public void testSave() {
+	public void testSave2() {
 		Alternative myAlternative = alternative.findById(1);
-		StudentAnswersId id = new StudentAnswersId(1, 1);
 		StudentAttempt studentAttempt = attempt.findById(1);
-		StudentAnswers myAnswers = new StudentAnswers(id, myAlternative, studentAttempt);
+		
+		StudentAnswers myAnswers = new StudentAnswers(myAlternative, studentAttempt);
 		answer.save(myAnswers);
 		
 		StudentAnswersId id2 = new StudentAnswersId(1, 1);
 		
 		assertNotNull(answer.findById(id2));
 	}
-
 }

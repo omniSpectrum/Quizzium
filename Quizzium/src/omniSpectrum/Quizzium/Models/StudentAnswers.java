@@ -31,6 +31,13 @@ public class StudentAnswers implements java.io.Serializable {
 		this.alternative = alternative;
 		this.studentAttempt = studentAttempt;
 	}
+	public StudentAnswers(Alternative alternative, StudentAttempt studentAttempt){
+		this.id = 
+				new StudentAnswersId(studentAttempt.getStudentAttemptId(), 
+						alternative.getAlternativeId());
+		this.alternative = alternative;
+		this.studentAttempt = studentAttempt;
+	}
 
 	@EmbeddedId
 	@AttributeOverrides({
