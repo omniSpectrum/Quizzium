@@ -36,7 +36,8 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 		criteria.add(Restrictions.gt("quizzEnded", restrictedDate));
 		
 		Quizz q = (Quizz)criteria.uniqueResult();
-		Hibernate.initialize(q.getQuestions());
+		if(q != null)
+			Hibernate.initialize(q.getQuestions());
 		tx.commit();
 		return q;
 	}

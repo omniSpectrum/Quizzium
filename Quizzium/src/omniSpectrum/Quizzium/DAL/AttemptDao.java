@@ -30,10 +30,12 @@ public class AttemptDao extends GenericDao<StudentAttempt, Integer> {
 		Transaction tx = getCurrentSession().beginTransaction();
 		StudentAttempt att = (StudentAttempt) getCurrentSession().get(getEntityClass(), id);
 		
-		Hibernate.initialize(att.getStudentAnswerses());
-		Hibernate.initialize(att.getQuizz());
-		Hibernate.initialize(att.getQuizz().getQuestions());
-		
+		if (att != null) {
+			Hibernate.initialize(att.getStudentAnswerses());
+			Hibernate.initialize(att.getQuizz());
+			Hibernate.initialize(att.getQuizz().getQuestions());
+		}
+
 		tx.commit();
         return att;
 	}
