@@ -44,10 +44,4 @@ public class StudentDAO extends GenericDao <Student, String> {
 		getCurrentSession().save(attempt);
 		trans.commit();
 	}
-	
-	public void saveAnswer(StudentAnswers answer){
-		Transaction trans = getCurrentSession().beginTransaction();
-		getCurrentSession().save(answer);
-		trans.commit();
-	}
 }

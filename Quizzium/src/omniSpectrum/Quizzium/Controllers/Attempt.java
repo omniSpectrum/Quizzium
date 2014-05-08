@@ -30,6 +30,7 @@ public class Attempt extends HttpServlet {
 	
 	private QuizDAO dbQuiz;
 	private StudentDAO dbStudent;
+	private AnswerDAO dbAnswer;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,6 +39,7 @@ public class Attempt extends HttpServlet {
         super();
         dbQuiz = new QuizDAO();
         dbStudent = new StudentDAO();
+        dbAnswer = new AnswerDAO();
     }
 
 	/**
@@ -131,7 +133,7 @@ public class Attempt extends HttpServlet {
 						myAttempt.getStudentAnswerses().add(myAnswer);
 						
 						// Insert myAnswer to DB
-						dbStudent.saveAnswer(myAnswer);
+						dbAnswer.save(myAnswer);
 						
 						// Cross-check actual answer against expected (correct) answer
 						if (question.getCorrectAnswers().contains(answerAlternative)) {
