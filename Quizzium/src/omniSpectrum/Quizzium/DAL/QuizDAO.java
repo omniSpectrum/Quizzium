@@ -4,11 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import omniSpectrum.Quizzium.Models.Quizz;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 public class QuizDAO extends GenericDao<Quizz, Integer> {
@@ -49,5 +51,19 @@ public class QuizDAO extends GenericDao<Quizz, Integer> {
 	    catch(ParseException e){
 	     	return null;
 	    }
+	}
+	
+	@Override
+	public List<Quizz> findAll(){
+		
+		Transaction trans = getCurrentSession().beginTransaction();
+		List<Quizz> myList = findByCriteria();
+		
+		for (Quizz q : myList) {
+			Hibernate.initialize(q.getQuestions());
+			Hibernate.initialize(q.getTeacher());
+		}
+		trans.commit();
+		return myList;
 	}
 }

@@ -1,10 +1,6 @@
 package omniSpectrum.Quizzium.Controllers;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -116,7 +112,7 @@ public class Attempt extends HttpServlet {
 			myAttempt.setStudent(dbStudent.findById(studentNumber));
 			
 			// Insert attempt into DB
-			dbStudent.saveAttempt(myAttempt);
+			dbAttempt.save(myAttempt);
 			
 			//Collect Values, Collect points "n out of m"
 			int amountRight = 0;

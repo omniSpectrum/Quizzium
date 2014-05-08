@@ -57,7 +57,6 @@ public abstract class GenericDao<T, PK extends Serializable> implements IGeneric
 		T instance = (T) getCurrentSession().get(getEntityClass(), id);
 		tx.commit();
         return instance;
-
 	}
 
 	@Override

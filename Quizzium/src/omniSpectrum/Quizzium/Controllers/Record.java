@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import omniSpectrum.Quizzium.dummy.DAL.StudentDAO;
-import omniSpectrum.Quizzium.dummy.Models.StudentAttempt;
+import omniSpectrum.Quizzium.DAL.AttemptDao;
+import omniSpectrum.Quizzium.DAL.StudentDAO;
+import omniSpectrum.Quizzium.Models.StudentAttempt;
 import omniSpectrum.Quizzium.utils.Helper;
 
 /**
@@ -24,14 +25,14 @@ public class Record extends HttpServlet {
 	private final String RECORD_VIEW = "/WEB-INF/TeacherViews/AttemptRecord.jsp";
 	private final String ERROR_VIEW = "/WEB-INF/common/404.jsp";
 	private final String LOGIN_CONTROLLER = "Login";
-	private StudentDAO db;
+	private AttemptDao db;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Record() {
         super();
-        db = new StudentDAO();
+        db = new AttemptDao();
     }
 
 	/**
@@ -49,7 +50,7 @@ public class Record extends HttpServlet {
 			Integer attId = Integer.parseInt((String)request.getParameter("a"));
 			
 			// find Attempt in DB
-			StudentAttempt att = db.getSingleAttempt(attId);
+			StudentAttempt att = db.findById(attId);
 			String viewToGo = ERROR_VIEW;
 
 			if (att != null) {

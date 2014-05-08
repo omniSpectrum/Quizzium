@@ -1,7 +1,9 @@
 package omniSpectrum.Quizzium.DAL;
 
 import java.util.Calendar;
+import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 
 import omniSpectrum.Quizzium.Models.Student;
@@ -17,11 +19,16 @@ public class StudentDAO extends GenericDao <Student, String> {
 	
 	public StudentAttempt getSingleAttempt(String studentNumber, int quizId) {
 		
-		Student student = findById(studentNumber);
+		Transaction tx = getCurrentSession().beginTransaction();
+		Student student = (Student) getCurrentSession().get(getEntityClass(), studentNumber);
+
 		StudentAttempt attempt = null;
 		
 		//If student exists --> find attempt
 		if (student != null) {
+			
+			// Fetch student's attempts
+			Hibernate.initialize(student.getStudentAttempts());
 			//Check for attempt
 			for (StudentAttempt att : student.getStudentAttempts()) {
 				if (att.getQuizz().getQuizzId() == quizId) {
@@ -31,17 +38,23 @@ public class StudentDAO extends GenericDao <Student, String> {
 		}
 		//ELSE --> create student, return null
 		else {
-			save(new Student(studentNumber));			
+			getCurrentSession().save(new Student(studentNumber));
 		}
 		
+		tx.commit();
 		return attempt;
 	}
 	
-	public void saveAttempt(StudentAttempt attempt){		
-		attempt.setAttemptDate(Calendar.getInstance().getTime());
+	@Override
+	public List<Student> findAll(){
 		
 		Transaction trans = getCurrentSession().beginTransaction();
-		getCurrentSession().save(attempt);
+		List<Student> myList = findByCriteria();
+		
+		for (Student student : myList) {
+			Hibernate.initialize(student.getStudentAttempts());
+		}
 		trans.commit();
+		return myList;
 	}
 }

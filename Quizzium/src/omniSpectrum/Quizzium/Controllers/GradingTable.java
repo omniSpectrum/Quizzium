@@ -1,7 +1,7 @@
 package omniSpectrum.Quizzium.Controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import omniSpectrum.Quizzium.dummy.DAL.QuizDAO;
-import omniSpectrum.Quizzium.dummy.DAL.StudentDAO;
-import omniSpectrum.Quizzium.dummy.Models.Quiz;
-import omniSpectrum.Quizzium.dummy.Models.Student;
+import omniSpectrum.Quizzium.DAL.QuizDAO;
+import omniSpectrum.Quizzium.DAL.StudentDAO;
+import omniSpectrum.Quizzium.Models.Quizz;
+import omniSpectrum.Quizzium.Models.Student;
 import omniSpectrum.Quizzium.utils.Helper;
 
 /**
@@ -51,8 +51,8 @@ public class GradingTable extends HttpServlet {
 		else{
 			// get List of the students,
 			// which also has List<Attempt> for each student object
-			ArrayList<Student> studentList = dbS.getAllStudents();
-			ArrayList<Quiz> quizList = dbQ.getAllQuizes();
+			List<Student> studentList = dbS.findAll();
+			List<Quizz> quizList = dbQ.findAll();
 			
 			// pass List to View
 			request.setAttribute("studentList", studentList);

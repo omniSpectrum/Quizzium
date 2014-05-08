@@ -4,9 +4,10 @@
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
+      
         <div class="navbar-header">
           <a class="navbar-brand" href="Dashboard">
-          	<img src="/Quizzium/res/img/brightness.png" alt="logo" height="35" align="middle"/>
+          	<img src="/Quizzium/res/img/brightness.png" alt="logo" height="27px" />
           	Quizzium
           </a>
         </div>

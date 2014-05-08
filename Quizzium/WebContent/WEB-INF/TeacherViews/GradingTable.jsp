@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.Quiz" %>
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.Student" %>
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.StudentAttempt" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="omniSpectrum.Quizzium.Models.Quizz" %>
+<%@ page import="omniSpectrum.Quizzium.Models.Student" %>
+<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
+<%@ page import="java.util.List" %>
 
 </head>
 <body>
@@ -17,11 +17,9 @@
 	
 	<%
 		@SuppressWarnings("unchecked") // Uncheck casting suppress
-		ArrayList<Student> sList = 
-			(ArrayList<Student>)request.getAttribute("studentList");
+		List<Student> sList = (List<Student>)request.getAttribute("studentList");
 		@SuppressWarnings("unchecked") // Uncheck casting suppress
-		ArrayList<Quiz> qList = 
-			(ArrayList<Quiz>)request.getAttribute("quizList");
+		List<Quizz> qList = (List<Quizz>)request.getAttribute("quizList");
 	%>
 	
 <div class="container">
@@ -33,7 +31,7 @@
 		<tr>
 			<th>&nbsp;<!-- THIS CEll initially left blank --></th>
 			
-			<% for(Quiz q : qList){%>
+			<% for(Quizz q : qList){%>
 				<th><%=q.getName() %></th>
 			<% } %>
 			
@@ -42,21 +40,21 @@
 		
 		<% for(Student s : sList){ %>
 			<tr>
-				<td>a<%=s.getStudentNumber() %></td>
+				<td><%=s.getStudentNumber() %></td>
 				
 				<% double sum = 0;
 				   
-					for(Quiz q : qList){
+					for(Quizz q : qList){
 						Boolean temp = Boolean.FALSE;
-				      for(StudentAttempt att : s.getAttempts()){
-				    	 temp = q.getId() == att.getQuiz().getId();
+				      for(StudentAttempt att : s.getStudentAttempts()){
+				    	 temp = q.getQuizzId() == att.getQuizz().getQuizzId();
 				    	 
 				      	 if(temp){ 
 				      		sum += att.getResult();
 				%>
 							<td>
 								<% out.println("<a href=\"GradingTable/Record?a="
-									+ att.getAttemptId() + "\"" 
+									+ att.getStudentAttemptId() + "\"" 
 									+ "class=\"blackLink\" >"
 									+ att.getResult()
 									+ "</a>"); %>
@@ -72,7 +70,12 @@
 				    } //End of Quiz for 
 				%>
 				 			 
-				 <td><%=(sum/s.getAttempts().size())%></td>				    
+				 <td><%
+				 		int m = s.getStudentAttempts().size();
+				    	m = m > 0 ? m : 1;
+				 		out.print(Math.round(sum / m));
+				 	 %>
+				 </td>				    
 			</tr>
 		<% } //End of Student FOR %>
 		

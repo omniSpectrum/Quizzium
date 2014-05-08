@@ -8,10 +8,10 @@
 <%@ include file="../shared/headContent.jsp" %>
 <link rel="stylesheet" href="/Quizzium/res/css/bootstrap-switch.min.css" />
 
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.StudentAttempt" %>
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.Question" %>
-<%@ page import="omniSpectrum.Quizzium.dummy.Models.AnswerAlternative" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
+<%@ page import="omniSpectrum.Quizzium.Models.Question" %>
+<%@ page import="omniSpectrum.Quizzium.Models.Alternative" %>
+<%@ page import="omniSpectrum.Quizzium.Models.StudentAnswers" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
 </head>
@@ -24,31 +24,33 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">Attempt Record</div>
 			<div class="panel-body">
-				<h4>Quiz: <%=att.getQuiz().getName() %> <small><%= new SimpleDateFormat("dd.MM.yyyy").format(att.getAttemptDate()) %></small></h4>
-				<h4>st.No.: a<%=att.getStudent().getStudentNumber() %></h4>
+				<h4>Quiz: <%=att.getQuizz().getName() %> 
+					<small><%= new SimpleDateFormat("dd.MM.yyyy").format(att.getAttemptDate()) %></small></h4>
+				<h4>st.No.: <%=att.getStudent().getStudentNumber() %></h4>
 				<h4>Result: <%=att.getResult() %>%</h4>
 			</div>
 		</div>
 		
-		<% for (Question question : att.getQuiz().getQuestions()) { %>
+		<% for (Question question : att.getQuizz().getQuestions()) { %>
 			<div class="form-group">
-				<p> <%=question.getQuestionText()%> </p>
+				<p> <%=question.getDescription()%> </p>
 						
-				<% for (AnswerAlternative answerOption : question.getAnswerOptions()) { 
+				<% for (Alternative answerOption : question.getAlternatives()) { 
 					Boolean isCorrect = 
-							answerOption.getAlternativeId() == question.getCorrectAnswer().getAlternativeId();
+							answerOption.getAlternativeId() == question.getCorrectAnswers().iterator().next()
+																		.getAlternative().getAlternativeId();
 				%>
 					<div class="radio">
 						<label> 
 							<input type="radio" disabled 
-						<%for(AnswerAlternative actualAnswer : att.getStudentAnswers()){ 	
-							if(actualAnswer.getAlternativeId() == answerOption.getAlternativeId()){
+						<%for(StudentAnswers actualAnswer : att.getStudentAnswerses()){ 	
+							if(actualAnswer.getAlternative().getAlternativeId() == answerOption.getAlternativeId()){
 								out.print("checked");
 							}							
 						} %>
 								name="<%=question.getQuestionId()%>"
 								value="<%=answerOption.getAlternativeId()%>" /> 
-								<%=answerOption.getAnswerText()%>
+								<%=answerOption.getDescription()%>
 								
 								<%="<span class=\"" + (isCorrect?
 										"glyphicon glyphicon-ok text-success"
