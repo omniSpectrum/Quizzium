@@ -26,10 +26,11 @@ public class Attempt extends HttpServlet {
 	
 	private final String ATTEMPT_OFF_VIEW = "WEB-INF/StudentViews/AttemptOff.jsp";
 	private final String ATTEMPT_ON_VIEW = "WEB-INF/StudentViews/AttemptOn.jsp";
-	private final String ATTEMPT_RESULT_VIEW = "WEB-INF/StudentViews/AttemptResult.jsp";
+	private final String RECORD_VIEW = "/WEB-INF/common/AttemptRecord.jsp";
 	
 	private QuizDAO dbQuiz;
 	private StudentDAO dbStudent;
+	private AttemptDao dbAttempt;
 	private AnswerDAO dbAnswer;
        
     /**
@@ -39,7 +40,6 @@ public class Attempt extends HttpServlet {
         super();
         dbQuiz = new QuizDAO();
         dbStudent = new StudentDAO();
-        dbAnswer = new AnswerDAO();
     }
 
 	/**
@@ -61,12 +61,12 @@ public class Attempt extends HttpServlet {
 		}
 		else{
 			//Check session
-			StudentAttempt myAttempt =
-					(StudentAttempt) request.getSession().getAttribute("attempt");
+			StudentAttempt myAttempt = null; // TODO delete comment
+//					(StudentAttempt) request.getSession().getAttribute("attempt");
 			
 			if (myAttempt != null) {
-				request.setAttribute("AttemptRecord", myAttempt);			
-				viewToGo = ATTEMPT_RESULT_VIEW;
+				request.setAttribute("attempt", myAttempt);			
+				viewToGo = RECORD_VIEW;
 			}
 			else{
 				//TODO Random order of questions and answers
@@ -87,6 +87,11 @@ public class Attempt extends HttpServlet {
 	 * Handles student answers and gives evaluation for quiz attempt
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//DAOs
+		dbAttempt = new AttemptDao();
+        dbAnswer = new AnswerDAO();
+        
 		//In case student was doing quiz for 10 hours
 		Quizz currentQuiz = dbQuiz.getCurrentQuiz();
 		//In case student tries to do same Quiz again
@@ -110,6 +115,9 @@ public class Attempt extends HttpServlet {
 			myAttempt.setQuizz(currentQuiz);
 			myAttempt.setStudent(dbStudent.findById(studentNumber));
 			
+			// Insert attempt into DB
+			dbStudent.saveAttempt(myAttempt);
+			
 			//Collect Values, Collect points "n out of m"
 			int amountRight = 0;
 			int amountOut = currentQuiz.getQuestions().size();
@@ -126,17 +134,17 @@ public class Attempt extends HttpServlet {
 					
 					if(answerAlternative.getAlternativeId() == studentAnswerNumber){
 
-						//Add answer object to DB / Attempt
-						StudentAnswers myAnswer = new StudentAnswers();
-						myAnswer.setAlternative(answerAlternative);
-						myAnswer.setStudentAttempt(myAttempt);
+						//Add answer object to Attempt
+						StudentAnswers myAnswer = new StudentAnswers(answerAlternative, myAttempt);										
 						myAttempt.getStudentAnswerses().add(myAnswer);
 						
 						// Insert myAnswer to DB
 						dbAnswer.save(myAnswer);
 						
 						// Cross-check actual answer against expected (correct) answer
-						if (question.getCorrectAnswers().contains(answerAlternative)) {
+						if (question.getCorrectAnswers()
+								.iterator().next()
+								.getAlternative().getAlternativeId() == answerAlternative.getAlternativeId()) {
 							amountRight++;
 						}
 					}
@@ -147,12 +155,12 @@ public class Attempt extends HttpServlet {
 			int total = (int) Math.round((amountRight*100.0) / amountOut);
 			myAttempt.setResult(total);
 			
-			// Insert attempt into DB
-			dbStudent.saveAttempt(myAttempt);
+			//Update Attempt
+			dbAttempt.update(myAttempt);
 			
 			// Attach an object to request
-			request.setAttribute("AttemptRecord", myAttempt);				
-			viewToGo = ATTEMPT_RESULT_VIEW;
+			request.setAttribute("attempt", myAttempt);				
+			viewToGo = RECORD_VIEW;
 			
 			//Set session
 			request.getSession().setAttribute("attempt", myAttempt);

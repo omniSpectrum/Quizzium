@@ -1,5 +1,7 @@
 package omniSpectrum.Quizzium.DAL;
 
+import java.util.Set;
+
 import org.hibernate.Transaction;
 
 import omniSpectrum.Quizzium.Models.StudentAnswers;
@@ -12,7 +14,7 @@ public class AnswerDAO extends GenericDao <StudentAnswers, StudentAnswersId>{
 		return StudentAnswers.class;
 	}
 	
-	public void saveMany(StudentAnswers... answers){
+	public void saveMany(Set<StudentAnswers> answers){
 		Transaction tx = getCurrentSession().beginTransaction();
 		for (StudentAnswers studentAnswers : answers) {
 			save(studentAnswers);

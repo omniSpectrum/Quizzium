@@ -41,7 +41,7 @@ public class CorrectAnswer implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Question_questionId", nullable = false, insertable = false, updatable = false)
 	public Question getQuestion() {
 		return this.question;
@@ -51,7 +51,7 @@ public class CorrectAnswer implements java.io.Serializable {
 		this.question = question;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Alternative_alternativeId", nullable = false, insertable = false, updatable = false)
 	public Alternative getAlternative() {
 		return this.alternative;

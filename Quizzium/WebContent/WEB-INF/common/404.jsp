@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
-<%@ include file="shared/headContent.jsp" %>
+<%@ include file="../shared/headContent.jsp" %>
 
 </head>
 <body>
-<%@ include file="shared/studentMenu.jsp"%> 
+<%@ include file="../shared/studentMenu.jsp"%> 
 <div class="container">
 	<div class="jumbotron">
 		<h1>Oooops!</h1>
@@ -22,7 +22,7 @@
 			<%=(mess != null ? mess : "") %>
 		</p>
 	</div>
-	<%@ include file="shared/footer.jsp" %>
+	<%@ include file="../shared/footer.jsp" %>
 </div><!-- END Of div.container -->
 </body>
 </html>

@@ -22,7 +22,7 @@ public class Record extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private final String RECORD_VIEW = "/WEB-INF/TeacherViews/AttemptRecord.jsp";
-	private final String ERROR_VIEW = "/WEB-INF/404.jsp";
+	private final String ERROR_VIEW = "/WEB-INF/common/404.jsp";
 	private final String LOGIN_CONTROLLER = "Login";
 	private StudentDAO db;
 	
