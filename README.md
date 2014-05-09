@@ -1,8 +1,9 @@
-<h1>Quizzium<h1>
-
+<h1>Quizzium</h1>
 Simple and fast quiz platform.
 
-// ScreenShot
+<img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/RecordScreen.png" alt="" />
+<br/>
+<img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/GradingScreen.png" alt="" />
 
 <h4>About</h4>
 Quizzium is web application to conduct small tests 
@@ -31,7 +32,7 @@ there as well by exploring a menu the teacher could find grading table and check
    	</tr>
    	<tr>
    		<th>Alexander Shkunov</th>
-   		<td>Development team member, Scrum master</td>
+   		<td>Developer</td>
    		<td><a href="http://alexshkunov.com/" target="_blank" >alexshkunov.com</a></td>
    </tr>
 </table>
