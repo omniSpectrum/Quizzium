@@ -57,8 +57,8 @@ public class Attempt extends HttpServlet {
 		}
 		else{
 			//Check session
-			StudentAttempt myAttempt = null; // TODO delete comment
-//					(StudentAttempt) request.getSession().getAttribute("attempt");
+			StudentAttempt myAttempt = (StudentAttempt) request.getSession().getAttribute("attempt");
+//					
 			
 			if (myAttempt != null) {
 				request.setAttribute("attempt", myAttempt);			
