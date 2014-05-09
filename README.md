@@ -1,9 +1,9 @@
 <h1>Quizzium</h1>
 Simple and fast quiz platform.
 
-<img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/RecordScreen.png" alt="" />
-<br/>
-<img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/GradingScreen.png" alt="" />
+<img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/RecordScreen.png" alt="" width="500px" />
+<hr />
+<img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/GradingScreen.png" alt="" width="500px" />
 
 <h4>About</h4>
 Quizzium is web application to conduct small tests 
