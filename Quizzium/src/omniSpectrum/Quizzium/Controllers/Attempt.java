@@ -58,15 +58,12 @@ public class Attempt extends HttpServlet {
 		else{
 			//Check session
 			StudentAttempt myAttempt = (StudentAttempt) request.getSession().getAttribute("attempt");
-//					
 			
 			if (myAttempt != null) {
 				request.setAttribute("attempt", myAttempt);			
 				viewToGo = RECORD_VIEW;
 			}
-			else{
-				//TODO Random order of questions and answers
-				
+			else{				
 				//pass quiz to view
 				request.setAttribute("currentQuiz", currentQuiz);
 				//View to go

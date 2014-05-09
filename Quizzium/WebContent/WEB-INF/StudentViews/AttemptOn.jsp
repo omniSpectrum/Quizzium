@@ -1,3 +1,5 @@
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,11 +12,17 @@
 <body>
 	<%@ include file="../shared/studentMenu.jsp"%> 
 
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="java.util.List"%>
+	
 	<%@ page import="omniSpectrum.Quizzium.Models.Quizz"%>
 	<%@ page import="omniSpectrum.Quizzium.Models.Question"%>
 	<%@ page import="omniSpectrum.Quizzium.Models.Alternative"%>
 	
-	<% Quizz currentQuiz = (Quizz) request.getAttribute("currentQuiz"); %>
+	<% Quizz currentQuiz = (Quizz) request.getAttribute("currentQuiz"); 
+		List<Question> myQues = new ArrayList<Question>(currentQuiz.getQuestions());
+		Collections.shuffle(myQues);
+	%>
 	
 	<div class="container">
 		<div class="row">
@@ -31,12 +39,14 @@
 							data-validation-regexp="^(a[0-9]{7})$"
 							data-validation-error-msg="Student number in format a123456" />
 					</div>
-					<% for (Question question : currentQuiz.getQuestions()) { %>
+					<% for (Question question : myQues) { %>
 
 					<div class="form-group">
 						<p> <%=question.getDescription()%> </p>
 						
-						<% for (Alternative answerOption : question.getAlternatives()) { %>
+						<% List<Alternative> alts = new ArrayList<Alternative>(question.getAlternatives());
+							Collections.shuffle(alts);							
+						for (Alternative answerOption : alts) { %>
 						<div class="radio">
 							<label> 
 								<input type="radio" 
