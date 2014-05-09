@@ -2,7 +2,9 @@
 Simple and fast quiz platform.
 
 <img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/RecordScreen.png" alt="" width="500px" />
-<hr />
+
+
+
 <img src="https://raw.githubusercontent.com/omniSpectrum/Quizzium/master/Documentation/screens/GradingScreen.png" alt="" width="500px" />
 
 <h4>About</h4>
