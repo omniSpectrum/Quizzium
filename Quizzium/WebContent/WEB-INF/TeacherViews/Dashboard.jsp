@@ -52,7 +52,7 @@
 		<%} //End of For loop%>
 	</table>
 	</div>
-		
+			
 	<%@ include file="../shared/footer.jsp" %>
 	</div>
 	</div>

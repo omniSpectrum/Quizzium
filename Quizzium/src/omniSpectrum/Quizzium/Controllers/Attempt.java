@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import omniSpectrum.Quizzium.DAL.*;
 import omniSpectrum.Quizzium.Models.*;
+import omniSpectrum.Quizzium.utils.Qhelper;
+import omniSpectrum.Quizzium.utils.SiteNav;
 
 /**
  * Default application entry-point. 
@@ -19,10 +21,6 @@ import omniSpectrum.Quizzium.Models.*;
 @WebServlet("/Attempt")
 public class Attempt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private final String ATTEMPT_OFF_VIEW = "WEB-INF/StudentViews/AttemptOff.jsp";
-	private final String ATTEMPT_ON_VIEW = "WEB-INF/StudentViews/AttemptOn.jsp";
-	private final String RECORD_VIEW = "/WEB-INF/common/AttemptRecord.jsp";
 	
 	private QuizDAO dbQuiz;
 	private StudentDAO dbStudent;
@@ -44,16 +42,14 @@ public class Attempt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*No caching for attempt page*/
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-		response.setDateHeader("Expires", 0); // Proxies.
+		Qhelper.turnNoCache(response);
 		
 		//Get Quiz
 		Quizz currentQuiz = dbQuiz.getCurrentQuiz();		
 		String viewToGo;
 		
 		if (currentQuiz == null) {
-			viewToGo = ATTEMPT_OFF_VIEW;
+			viewToGo = SiteNav.ATTEMPT_OFF_VIEW;
 		}
 		else{
 			//Check session
@@ -61,13 +57,13 @@ public class Attempt extends HttpServlet {
 			
 			if (myAttempt != null) {
 				request.setAttribute("attempt", myAttempt);			
-				viewToGo = RECORD_VIEW;
+				viewToGo = SiteNav.RECORD_VIEW;
 			}
 			else{				
 				//pass quiz to view
 				request.setAttribute("currentQuiz", currentQuiz);
 				//View to go
-				viewToGo = ATTEMPT_ON_VIEW;
+				viewToGo = SiteNav.ATTEMPT_ON_VIEW;
 			}
 		}
 		
@@ -99,7 +95,7 @@ public class Attempt extends HttpServlet {
 						+ studentNumber.toString() 
 						+ " has already done this quiz";
 			request.setAttribute("offMessage", mess);
-			viewToGo = ATTEMPT_OFF_VIEW;
+			viewToGo = SiteNav.ATTEMPT_OFF_VIEW;
 		}
 		else{
 			
@@ -153,7 +149,7 @@ public class Attempt extends HttpServlet {
 			
 			// Attach an object to request
 			request.setAttribute("attempt", myAttempt);				
-			viewToGo = RECORD_VIEW;
+			viewToGo = SiteNav.RECORD_VIEW;
 			
 			//Set session
 			request.getSession().setAttribute("attempt", myAttempt);

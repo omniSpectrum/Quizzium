@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import omniSpectrum.Quizzium.DAL.QuizDAO;
-import omniSpectrum.Quizzium.utils.Helper;
+import omniSpectrum.Quizzium.utils.Qhelper;
+import omniSpectrum.Quizzium.utils.SiteNav;
 
 /**
  * Servlet implementation class Dashboard
@@ -19,8 +20,6 @@ import omniSpectrum.Quizzium.utils.Helper;
 public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private final String DASHBOARD_VIEW = "WEB-INF/TeacherViews/Dashboard.jsp";
-	private final String LOGIN_CONTROLLER = "Login";
 	private QuizDAO db;
        
     /**
@@ -36,16 +35,22 @@ public class Dashboard extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/*No caching for attempt page*/
+		Qhelper.turnNoCache(response);
+		
 		//check if loggedIn
-		if (!Helper.checkIfLoggedIn(request.getSession())) {
+		if (!Qhelper.checkIfLoggedIn(request.getSession())) {
 			// if NOT loggedIn
-			response.sendRedirect(LOGIN_CONTROLLER);	
+			response.sendRedirect(SiteNav.LOGIN_CONTROLLER);	
 		}
 		else{
 			request.setAttribute("quizList", db.findAll());	
 			
+			String version = Qhelper.appVersion(getServletContext());
+			request.setAttribute("version", version);	
+			
 			//redirect to page	
-			RequestDispatcher view = request.getRequestDispatcher(DASHBOARD_VIEW);
+			RequestDispatcher view = request.getRequestDispatcher(SiteNav.DASHBOARD_VIEW);
 			view.forward(request, response);
 		}
 	}

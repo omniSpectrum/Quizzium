@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import omniSpectrum.Quizzium.DAL.TeacherDAO;
 import omniSpectrum.Quizzium.Models.Teacher;
-import omniSpectrum.Quizzium.utils.Helper;
+import omniSpectrum.Quizzium.utils.Qhelper;
+import omniSpectrum.Quizzium.utils.SiteNav;
 
 /**
  * Servlet implementation class Login
@@ -20,9 +21,6 @@ import omniSpectrum.Quizzium.utils.Helper;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private final String DASHBOARD_CONTROLLER = "Dashboard";
-	private final String LOGIN_VIEW = "WEB-INF/TeacherViews/LogIn.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,13 +34,16 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
-	    if (Helper.checkIfLoggedIn(request.getSession())) {
+		/*No caching for attempt page*/
+		Qhelper.turnNoCache(response);
+		
+	    if (Qhelper.checkIfLoggedIn(request.getSession())) {
  
 	    	//In case if already loggedIn
-	    	response.sendRedirect(DASHBOARD_CONTROLLER); 
+	    	response.sendRedirect(SiteNav.DASHBOARD_CONTROLLER); 
 		}
 	    else {
-	    	RequestDispatcher view = request.getRequestDispatcher(LOGIN_VIEW);
+	    	RequestDispatcher view = request.getRequestDispatcher(SiteNav.LOGIN_VIEW);
 			view.forward(request, response);
 		}
 	}
@@ -61,13 +62,13 @@ public class Login extends HttpServlet {
 		if (test == null) {
 
 			request.setAttribute("LoginMessage", "Invalid username or password");
-			RequestDispatcher view = request.getRequestDispatcher(LOGIN_VIEW);
+			RequestDispatcher view = request.getRequestDispatcher(SiteNav.LOGIN_VIEW);
 			view.forward(request, response);	
 		} 
 		else{			
 			HttpSession session = request.getSession();
 		    session.setAttribute("username", username);
-		    response.sendRedirect(DASHBOARD_CONTROLLER);	
+		    response.sendRedirect(SiteNav.DASHBOARD_CONTROLLER);	
 		}			
 	}
 

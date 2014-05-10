@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import omniSpectrum.Quizzium.utils.SiteNav;
+
 /**
  * Servlet implementation class Logout
  */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private final String LOGIN_CONTROLLER = "Login";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,7 +40,7 @@ public class Logout extends HttpServlet {
 	    	session.removeAttribute("username");
 		}
 	    
-	    response.sendRedirect(LOGIN_CONTROLLER);
+	    response.sendRedirect(SiteNav.LOGIN_CONTROLLER);
 	}
 
 }

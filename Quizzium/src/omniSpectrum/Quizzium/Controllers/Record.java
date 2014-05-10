@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import omniSpectrum.Quizzium.DAL.AttemptDao;
 import omniSpectrum.Quizzium.DAL.StudentDAO;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
-import omniSpectrum.Quizzium.utils.Helper;
+import omniSpectrum.Quizzium.utils.Qhelper;
 
 /**
  * Servlet implementation class Record
@@ -40,8 +40,11 @@ public class Record extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/*No caching for attempt page*/
+		Qhelper.turnNoCache(response);
+		
 		//check if loggedIn
-		if (!Helper.checkIfLoggedIn(request.getSession())) {
+		if (!Qhelper.checkIfLoggedIn(request.getSession())) {
 			// if NOT loggedIn
 			response.sendRedirect(LOGIN_CONTROLLER);					
 		}

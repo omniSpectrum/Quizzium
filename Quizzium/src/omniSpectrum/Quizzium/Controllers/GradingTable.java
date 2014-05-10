@@ -14,7 +14,8 @@ import omniSpectrum.Quizzium.DAL.QuizDAO;
 import omniSpectrum.Quizzium.DAL.StudentDAO;
 import omniSpectrum.Quizzium.Models.Quizz;
 import omniSpectrum.Quizzium.Models.Student;
-import omniSpectrum.Quizzium.utils.Helper;
+import omniSpectrum.Quizzium.utils.Qhelper;
+import omniSpectrum.Quizzium.utils.SiteNav;
 
 /**
  * Servlet implementation class GradingTable
@@ -23,8 +24,6 @@ import omniSpectrum.Quizzium.utils.Helper;
 public class GradingTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private final String GRADING_VIEW = "WEB-INF/TeacherViews/GradingTable.jsp";
-	private final String LOGIN_CONTROLLER = "Login";
 	StudentDAO dbS;
     QuizDAO dbQ;   
 	
@@ -42,10 +41,13 @@ public class GradingTable extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/*No caching for attempt page*/
+		Qhelper.turnNoCache(response);
+		
 		//check if loggedIn
-		if (!Helper.checkIfLoggedIn(request.getSession())) {
+		if (!Qhelper.checkIfLoggedIn(request.getSession())) {
 			// if NOT loggedIn
-			response.sendRedirect(LOGIN_CONTROLLER);
+			response.sendRedirect(SiteNav.LOGIN_CONTROLLER);
 								
 		}
 		else{
@@ -59,7 +61,7 @@ public class GradingTable extends HttpServlet {
 			request.setAttribute("quizList", quizList);
 			
 			//redirect to page	
-			RequestDispatcher view = request.getRequestDispatcher(GRADING_VIEW);
+			RequestDispatcher view = request.getRequestDispatcher(SiteNav.GRADING_VIEW);
 			view.forward(request, response);
 		}
 	}
