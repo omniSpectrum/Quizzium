@@ -5,7 +5,6 @@ import java.util.Calendar;
 import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 
-import omniSpectrum.Quizzium.Models.Question;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 
 public class AttemptDao extends GenericDao<StudentAttempt, Integer> {

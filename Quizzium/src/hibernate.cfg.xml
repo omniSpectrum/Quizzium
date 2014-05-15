@@ -6,6 +6,9 @@
     <session-factory>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.autoReconnect">true</property>
+    	<property name="connection.autoReconnectForPools">true</property>
+    	<property name="connection.is-connection-validation-required">true</property>
         <property name="hibernate.connection.password">salainen</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/quizziumdb2</property>
         <property name="hibernate.connection.username">quizzium</property>
@@ -13,6 +16,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
+
         <mapping class="omniSpectrum.Quizzium.Models.Student" />
         <mapping class="omniSpectrum.Quizzium.Models.Teacher" />
         <mapping class="omniSpectrum.Quizzium.Models.StudentAttempt" />

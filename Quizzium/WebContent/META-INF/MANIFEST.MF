@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Class-Path: 
 Implementation-Title: Quizzium
-Implementation-Version: 1.0.3
+Implementation-Version: 1.0.4
 Implementation-Vendor: omniSpectrum
