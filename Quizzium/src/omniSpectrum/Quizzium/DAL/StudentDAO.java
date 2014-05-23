@@ -1,13 +1,11 @@
 package omniSpectrum.Quizzium.DAL;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 
 import omniSpectrum.Quizzium.Models.Student;
-import omniSpectrum.Quizzium.Models.StudentAnswers;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 
 public class StudentDAO extends GenericDao <Student, String> {

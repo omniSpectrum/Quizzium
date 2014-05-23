@@ -10,6 +10,7 @@ import omniSpectrum.Quizzium.Models.StudentAttempt;
 
 import org.junit.Test;
 
+@SuppressWarnings("unused")
 public class StudentDaoTest {
 
 	private StudentDAO student = new StudentDAO();

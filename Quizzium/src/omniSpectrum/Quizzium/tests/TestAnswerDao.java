@@ -1,6 +1,6 @@
 package omniSpectrum.Quizzium.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import omniSpectrum.Quizzium.DAL.AlternativeDao;
 import omniSpectrum.Quizzium.DAL.AnswerDAO;
 import omniSpectrum.Quizzium.DAL.AttemptDao;
@@ -9,7 +9,6 @@ import omniSpectrum.Quizzium.Models.StudentAnswers;
 import omniSpectrum.Quizzium.Models.StudentAnswersId;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 
-import org.apache.catalina.ant.FindLeaksTask;
 import org.junit.Test;
 
 public class TestAnswerDao {

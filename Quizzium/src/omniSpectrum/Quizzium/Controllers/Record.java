@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import omniSpectrum.Quizzium.DAL.AttemptDao;
-import omniSpectrum.Quizzium.DAL.StudentDAO;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 import omniSpectrum.Quizzium.utils.Qhelper;
 
