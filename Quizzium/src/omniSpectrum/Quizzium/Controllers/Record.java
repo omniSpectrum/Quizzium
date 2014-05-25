@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import omniSpectrum.Quizzium.DAL.AttemptDao;
 import omniSpectrum.Quizzium.Models.StudentAttempt;
 import omniSpectrum.Quizzium.utils.Qhelper;
+import omniSpectrum.Quizzium.utils.SiteNav;
 
 /**
  * Servlet implementation class Record
@@ -22,8 +23,7 @@ public class Record extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private final String RECORD_VIEW = "/WEB-INF/TeacherViews/AttemptRecord.jsp";
-	private final String ERROR_VIEW = "/WEB-INF/common/404.jsp";
-	private final String LOGIN_CONTROLLER = "Login";
+	
 	private AttemptDao db;
 	
     /**
@@ -45,7 +45,7 @@ public class Record extends HttpServlet {
 		//check if loggedIn
 		if (!Qhelper.checkIfLoggedIn(request.getSession())) {
 			// if NOT loggedIn
-			response.sendRedirect(LOGIN_CONTROLLER);					
+			response.sendRedirect(SiteNav.LOGIN_CONTROLLER);					
 		}
 		else{
 			// get request parameter
@@ -53,7 +53,7 @@ public class Record extends HttpServlet {
 			
 			// find Attempt in DB
 			StudentAttempt att = db.findById(attId);
-			String viewToGo = ERROR_VIEW;
+			String viewToGo = SiteNav.ERROR_VIEW;
 
 			if (att != null) {
 				// pass Attempt to View

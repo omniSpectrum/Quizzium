@@ -16,4 +16,6 @@ public class SiteNav {
 	public static final String LOGIN_CONTROLLER = "Login";	
 	public static final String DASHBOARD_CONTROLLER = "Dashboard";
 	
+	public static final String ERROR_VIEW = "/WEB-INF/common/404.jsp";
+	
 }
