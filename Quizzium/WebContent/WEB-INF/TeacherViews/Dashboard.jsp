@@ -33,7 +33,7 @@
 			<th>Questions</th>
 			<th>Start</th>
 			<th>End</th>
-			<th>Action</th>
+			<%-- <th>Action</th>--%>
 		</tr>
 		<% for(Quizz q : quizList){ %>
 			
@@ -48,10 +48,10 @@
 				<td><% if(q.getQuizzEnded() != null) 
 						out.print(dfQuiz.format(q.getQuizzEnded())); %> 
 				</td>
-				<td>
+				<%-- <td>
 					<button type="button" class="btn btn-default btn-xs" 
 							data-toggle="modal" data-target="#myModal" >Set time</button>
-				</td>
+				</td>--%>
 			</tr>
 			
 		<%} //End of For loop%>
@@ -73,7 +73,12 @@
         <h4 class="modal-title" id="myModalLabel">Set time</h4>
       </div>
       <div class="modal-body">
-        Test
+        <h5>Quiz name</h5>
+        <span>Start</span>
+        	<input type="text" name="startDate" /> 
+        <br/><br/>
+        <span>End</span>
+        	<input type="text" name="endDate" /> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -82,8 +87,6 @@
     </div>
   </div>
 </div><!-- END of Modal -->
-
-<!-- Modal script -->
 
 </body>
 </html>

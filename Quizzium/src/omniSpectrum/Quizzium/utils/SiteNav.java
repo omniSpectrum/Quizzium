@@ -1,6 +1,9 @@
 package omniSpectrum.Quizzium.utils;
 
 public class SiteNav {
+	
+	//Common
+	public static final String ERROR_VIEW = "/WEB-INF/common/404.jsp";
 
 	//Student links
 	public static final String ATTEMPT_OFF_VIEW = "WEB-INF/StudentViews/AttemptOff.jsp";
@@ -9,13 +12,9 @@ public class SiteNav {
 	
 	//Teacher links
 	public static final String DASHBOARD_VIEW = "WEB-INF/TeacherViews/Dashboard.jsp";
-	public static final String GRADING_VIEW = "WEB-INF/TeacherViews/GradingTable.jsp";
-	
+	public static final String GRADING_VIEW = "WEB-INF/TeacherViews/GradingTable.jsp";	
 	public static final String LOGIN_VIEW = "WEB-INF/TeacherViews/LogIn.jsp";
 	
 	public static final String LOGIN_CONTROLLER = "Login";	
 	public static final String DASHBOARD_CONTROLLER = "Dashboard";
-	
-	public static final String ERROR_VIEW = "/WEB-INF/common/404.jsp";
-	
 }

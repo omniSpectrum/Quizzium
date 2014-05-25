@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzium</title>
 <%@ include file="../shared/headContent.jsp" %>
-<link rel="stylesheet" href="/Quizzium/res/css/bootstrap-switch.min.css" />
 
 <%@ page import="omniSpectrum.Quizzium.Models.StudentAttempt" %>
 <%@ page import="omniSpectrum.Quizzium.Models.Question" %>
