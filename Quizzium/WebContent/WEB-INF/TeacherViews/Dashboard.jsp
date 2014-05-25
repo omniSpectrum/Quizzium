@@ -33,6 +33,7 @@
 			<th>Questions</th>
 			<th>Start</th>
 			<th>End</th>
+			<th>Action</th>
 		</tr>
 		<% for(Quizz q : quizList){ %>
 			
@@ -47,36 +48,42 @@
 				<td><% if(q.getQuizzEnded() != null) 
 						out.print(dfQuiz.format(q.getQuizzEnded())); %> 
 				</td>
+				<td>
+					<button type="button" class="btn btn-default btn-xs" 
+							data-toggle="modal" data-target="#myModal" >Set time</button>
+				</td>
 			</tr>
 			
 		<%} //End of For loop%>
 	</table>
 	</div>
-	
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
-			aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Set time</h4>
-	      </div>
-	      <div class="modal-body">
-	        Test
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div><!-- END of Modal -->
 			
 	<%@ include file="../shared/footer.jsp" %>
 	</div>
 	</div>
 </div><!-- End of container -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+		aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Set time</h4>
+      </div>
+      <div class="modal-body">
+        Test
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div><!-- END of Modal -->
+
+<!-- Modal script -->
 
 </body>
 </html>
